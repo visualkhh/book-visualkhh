@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="euc-kr" standalone="no"?>
+<!DOCTYPE booklist SYSTEM "SAXSample.dtd">
+
+<!-- 책 정보에 관한 XML -->
+<booklist>
+	<book>
+		<name>
+			&bookname;
+		</name>
+		<page><![CDATA[ 648 ]]></page>
+	</book>
+</booklist>

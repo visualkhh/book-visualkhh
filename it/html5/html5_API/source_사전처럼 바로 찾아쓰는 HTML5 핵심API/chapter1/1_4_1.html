@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html> 
+<html lang="ko"> 
+<head> 
+<meta charset="UTF-8" /> 
+<title>document.redyState의 예제</title> 
+<link rel="stylesheet" href="style.css" type="text/css" /> 
+<script> 
+ 
+// 로그를 초기화 
+var n = 0; 
+var log = ""; 
+loging("스크립트 실행 시작"); 
+ 
+// readystatechange 이벤트의 리스너를document 오브젝트에 지정
+document.addEventListener("readystatechange", function() { 
+  loging("readystatechange 이벤트발생"); 
+}, false); 
+ 
+// DOMContentLoaded 이벤트의 리스너를 document 오브젝트에 지정
+document.addEventListener("DOMContentLoaded", function() { 
+  loging("DOMContentLoaded 이벤트 발생"); 
+}, false); 
+ 
+// load 이벤트의 리스너를window 오브젝트에 지정
+window.addEventListener("load", function() { 
+  loging("load 이벤트 발생"); 
+  document.getElementById("console").innerHTML = log; 
+}, false); 
+ 
+// 로그를 생성
+function loging(str) { 
+  n ++; 
+  log += n + ": " + str + "(" + document.readyState + ")\n"; 
+} 
+ 
+</script> 
+</head> 
+<body> 
+ 
+<h1>document.redyState 의 예제</h1> 
+<pre id="console"></pre> 
+ 
+</body> 
+</html> 

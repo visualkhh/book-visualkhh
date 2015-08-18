@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="euc-kr"?>
+
+<!DOCTYPE BookList [
+<!ELEMENT BookList (Book)>
+<!ELEMENT Book (Title, Author, (PubDate | Date))>
+<!ELEMENT Title (#PCDATA)>
+<!ELEMENT Author (#PCDATA)>
+<!ELEMENT PubDate EMPTY>
+<!ELEMENT Date EMPTY>
+]>
+
+<BookList>
+	<Book>
+		<Title>XML Web Services</Title>
+		<Author>이명진</Author>
+		<Date />
+	</Book>
+</BookList>

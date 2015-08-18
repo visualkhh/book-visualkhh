@@ -1,0 +1,786 @@
+package com.shinhan.spb.admin.mng.scheduler;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import jwaf.lib.db.LoggableStatement;
+import jwaf.lib.entity.Entity;
+import jwaf.lib.text.StringUtil;
+import org.apache.log4j.Logger;
+
+public class ErpDataCheckDBWrapper
+{
+  private Logger LOG = Logger.getLogger(getClass());
+
+  public ArrayList getBpCardApprData(Connection conn, Entity param, Entity user)
+    throws Exception
+  {
+    PreparedStatement pstmt = null;
+    ResultSet rs = null;
+    ArrayList list = new ArrayList();
+    StringBuffer sql = new StringBuffer();
+
+    int idx = 1;
+    try
+    {
+      sql.append("select aa.card_seq, aa.bank_id, aa.bank_name, aa.card_no \n");
+      sql.append("     , count(f.card_seq) cnt, sum(ifnull(f.appr_amount, 0)) totalamt \n");
+      sql.append("from   ( \n");
+      sql.append("        select b.card_seq, e.bank_id, e.bank_name, b.card_no  \n");
+      sql.append("        from   bp_card_by_user a, bp_card b, bp_sched_acct c, bp_bank e \n");
+      sql.append("        where  a.user_id = ? \n");
+      sql.append("        and    b.card_seq = a.card_seq \n");
+      sql.append("        and    c.acct_no = b.card_no \n");
+      sql.append("        and    c.bank_type = '02' \n");
+      sql.append("        and    e.bank_type = '02' \n");
+      sql.append("        and    e.bank_id = b.bank_id \n");
+      sql.append("      ) aa left outer join bp_card_appr f \n");
+      sql.append("   on  (f.card_seq = aa.card_seq  \n");
+      sql.append("        and f.appr_date between ? and ?) \n");
+      sql.append("group  by aa.bank_id, aa.bank_name, aa.card_no \n");
+      sql.append("order  by bank_name, card_no \n");
+
+      if (this.LOG.isDebugEnabled()) {
+        pstmt = new LoggableStatement(conn, sql.toString());
+      }
+      else {
+        pstmt = conn.prepareStatement(sql.toString());
+      }
+
+      pstmt.setString(idx++, user.getString("user_id"));
+      pstmt.setString(idx++, param.getString("start_date"));
+      pstmt.setString(idx++, param.getString("end_date"));
+
+      if (this.LOG.isDebugEnabled()) {
+        this.LOG.debug(((LoggableStatement)pstmt).getQueryString());
+      }
+
+      rs = pstmt.executeQuery();
+
+      while (rs.next()) {
+        Entity tmp = new Entity();
+        tmp.parseResultSet(rs);
+        list.add(tmp);
+      }
+    }
+    catch (Exception e) {
+      throw e;
+    } finally {
+      if (rs != null) rs.close();
+      if (pstmt != null) pstmt.close();
+    }
+    return list; } 
+  public ArrayList getErpCardApprData(Connection conn, Entity param) throws Exception { PreparedStatement pstmt = null;
+
+    Entity xmlSqlData = null;
+    Entity tmpSql = null;
+
+    ResultSet rs = null;
+    ArrayList list = new ArrayList();
+    String sql = "";
+    ErpStatementUtil exu;
+    ErpXmlParser exp;
+    try { ErpXmlParser exp = new ErpXmlParser(param.getString("biz_reg_no"));
+      ErpStatementUtil exu = new ErpStatementUtil();
+
+      xmlSqlData = exp.getSqlData("erp_data_check");
+
+      tmpSql = xmlSqlData.getEntity("2");
+
+      sql = tmpSql.getString("statement");
+      if (this.LOG.isDebugEnabled()) pstmt = new LoggableStatement(conn, sql); else {
+        pstmt = conn.prepareStatement(sql);
+      }
+      exu.setStatementValue(pstmt, (Entity[])tmpSql.getArrayList("params").toArray(new Entity[0]), param);
+
+      if (this.LOG.isDebugEnabled()) {
+        this.LOG.debug(((LoggableStatement)pstmt).getQueryString());
+      }
+
+      rs = (ResultSet)exu.execute(pstmt, tmpSql.getString("executeType"));
+
+      while (rs.next()) {
+        Entity tmp = new Entity();
+        tmp.parseResultSet(rs);
+        list.add(tmp);
+      }
+    } catch (Exception e)
+    {
+      throw e;
+    } finally {
+      if (rs != null) rs.close();
+      if (pstmt != null) pstmt.close();
+    }
+    ErpStatementUtil exu;
+    ErpXmlParser exp;
+    return list;
+  }
+
+  public ArrayList getBpDemandCurrentData(Connection conn, Entity param, Entity user)
+    throws Exception
+  {
+    PreparedStatement pstmt = null;
+    ResultSet rs = null;
+    ArrayList list = new ArrayList();
+    StringBuffer sql = new StringBuffer();
+
+    int idx = 1;
+    try
+    {
+      sql.append("select aa.bank_id, aa.bank_name, aa.acct_num, count(ab.acct_seq) cnt \n");
+      sql.append("     , sum(ifnull(case ab.tran_clsfy when 1 then ab.tran_amt else 0 end, 0)) intotal \n");
+      sql.append("     , sum(ifnull(case ab.tran_clsfy when 1 then 0 else ab.tran_amt end, 0)) outtotal \n");
+      sql.append("     , sum(ifnull(ab.tran_remain, 0)) remaintotal \n");
+      sql.append("from   ( \n");
+      sql.append("       select b.acct_seq, c.bank_id, c.bank_name, d.acct_no acct_num \n");
+      sql.append("       from   bp_acct_by_user a, bp_acct b, bp_bank c, bp_sched_acct d \n");
+      sql.append("       where  a.user_id = ? \n");
+      sql.append("and    b.acct_seq = a.acct_seq \n");
+      sql.append("and    b.use_yn = 'Y' \n");
+      sql.append("       and    b.acct_type_id in ('1', '01', '31') \n");
+      sql.append("and    c.bank_id = b.bank_id \n");
+      sql.append("       and    c.bank_type = '01' \n");
+      sql.append("       and    (d.acct_no = b.acct_num or d.acct_no = b.acct_num_new) \n");
+      sql.append("       and    d.sched_trans_yn = 'Y' \n");
+      sql.append("       ) aa left outer join bp_demand_current_dtl ab \n");
+      sql.append("            on (ab.tran_date between ? and ? \n");
+      sql.append("            and ab.acct_seq = aa.acct_seq) \n");
+      sql.append("group by aa.bank_id, aa.bank_name, aa.acct_num \n");
+      sql.append("order  by aa.bank_id, aa.acct_num \n");
+
+      if (this.LOG.isDebugEnabled()) {
+        pstmt = new LoggableStatement(conn, sql.toString());
+      }
+      else {
+        pstmt = conn.prepareStatement(sql.toString());
+      }
+
+      pstmt.setString(idx++, user.getString("user_id"));
+      pstmt.setString(idx++, param.getString("start_date"));
+      pstmt.setString(idx++, param.getString("end_date"));
+
+      if (this.LOG.isDebugEnabled()) {
+        this.LOG.debug(((LoggableStatement)pstmt).getQueryString());
+      }
+
+      rs = pstmt.executeQuery();
+
+      while (rs.next()) {
+        Entity tmp = new Entity();
+        tmp.parseResultSet(rs);
+        list.add(tmp);
+      }
+    }
+    catch (Exception e) {
+      throw e;
+    } finally {
+      if (rs != null) rs.close();
+      if (pstmt != null) pstmt.close();
+    }
+    return list; } 
+  public ArrayList getErpDemandCurrentData(Connection conn, Entity param) throws Exception { PreparedStatement pstmt = null;
+
+    Entity xmlSqlData = null;
+    Entity tmpSql = null;
+
+    ResultSet rs = null;
+    ArrayList list = new ArrayList();
+    String sql = "";
+    ErpStatementUtil exu;
+    ErpXmlParser exp;
+    try { ErpXmlParser exp = new ErpXmlParser(param.getString("biz_reg_no"));
+      ErpStatementUtil exu = new ErpStatementUtil();
+
+      xmlSqlData = exp.getSqlData("erp_data_check");
+
+      tmpSql = xmlSqlData.getEntity("1");
+
+      sql = tmpSql.getString("statement");
+      if (this.LOG.isDebugEnabled()) pstmt = new LoggableStatement(conn, sql); else {
+        pstmt = conn.prepareStatement(sql);
+      }
+      exu.setStatementValue(pstmt, (Entity[])tmpSql.getArrayList("params").toArray(new Entity[0]), param);
+
+      if (this.LOG.isDebugEnabled()) {
+        this.LOG.debug(((LoggableStatement)pstmt).getQueryString());
+      }
+
+      rs = (ResultSet)exu.execute(pstmt, tmpSql.getString("executeType"));
+
+      while (rs.next()) {
+        Entity tmp = new Entity();
+        tmp.parseResultSet(rs);
+        list.add(tmp);
+      }
+    } catch (Exception e)
+    {
+      throw e;
+    } finally {
+      if (rs != null) rs.close();
+      if (pstmt != null) pstmt.close();
+    }
+    ErpStatementUtil exu;
+    ErpXmlParser exp;
+    return list;
+  }
+
+  public ArrayList getJaGeum(Connection conn, Entity param, Entity user)
+    throws Exception
+  {
+    PreparedStatement psmt = null;
+    ResultSet rs = null;
+    Entity tempEntity = null;
+    Entity tempInOutTotal = null;
+    int idx = 1;
+
+    ArrayList retList = new ArrayList();
+
+    StringBuffer sql = new StringBuffer();
+
+    sql.append("select a.acct_seq, lpad(a.acct_type_id, 2, '0') acct_type_id \n");
+    sql.append("     , case lpad(a.acct_type_id, 2, '0') \n");
+    sql.append("        when '01' then '보통' \n");
+    sql.append("        when '31' then '당좌' \n");
+    sql.append("        else '적금' end acct_type_name \n");
+    sql.append("     , b.bank_id, b.bank_name, a.acct_num, a.acct_remain, date_format(now(), '%Y%m%d') today \n");
+    sql.append("from   bp_acct a, bp_bank b, bp_acct_by_user c, bp_sched_acct e \n");
+    sql.append("where  use_yn = 'Y' \n");
+    sql.append("and    lpad(a.acct_type_id, 2, '0') in ('01', '31') \n");
+    sql.append("and    b.bank_type = '01' \n");
+    sql.append("and    b.bank_id = a.bank_id \n");
+    sql.append("and    c.user_id = ? \n");
+    sql.append("and    c.acct_seq = a.acct_seq \n");
+    sql.append("and    e.sched_trans_yn = 'Y' \n");
+    sql.append("and    e.acct_no in (a.acct_num, a.acct_num_old, a.acct_num_new) \n");
+    sql.append("and    (   a.acct_remain <> 0 \n");
+    sql.append("       or exists (select 1 from bp_demand_current_dtl \n");
+    sql.append("                  where  acct_seq = a.acct_seq and tran_date > date_format(date_add(now(), interval -6 month), '%Y%m%d')) \n");
+    sql.append("       or exists (select 1 from bp_deposit_dtl \n");
+    sql.append("                  where  acct_seq = a.acct_seq and tran_dt > date_format(date_add(now(), interval -6 month), '%Y%m%d')) \n");
+    sql.append("       ) \n");
+    sql.append("order  by case b.bank_id \n");
+    sql.append("               when '88' then '00' \n");
+    sql.append("               else '02' end \n");
+    sql.append("     , b.bank_name, a.acct_num \n");
+    try
+    {
+      if (this.LOG.isDebugEnabled())
+        psmt = new LoggableStatement(conn, sql.toString());
+      else {
+        psmt = conn.prepareStatement(sql.toString());
+      }
+
+      psmt.setString(idx++, user.getString("user_id"));
+
+      if (this.LOG.isDebugEnabled()) {
+        this.LOG.debug(((LoggableStatement)psmt).getQueryString());
+      }
+
+      rs = psmt.executeQuery();
+      do {
+        tempEntity = new Entity();
+        tempEntity.parseResultSet(rs);
+
+        tempInOutTotal = getInOutTotal(conn, param.getString("start_date"), param.getString("end_date"), tempEntity.getString("acct_seq"), tempEntity.getString("acct_type_id"));
+
+        tempEntity.setValue("amt_in", tempInOutTotal.getDouble("amt_in"));
+        tempEntity.setValue("amt_out", tempInOutTotal.getDouble("amt_out"));
+
+        tempEntity.setValue("pre_remain", getPreRemain(conn, param.getString("start_date"), tempEntity.getString("acct_seq"), tempEntity.getString("acct_type_id")));
+        tempEntity.setValue("remain", getRemain(conn, param.getString("end_date"), tempEntity.getString("acct_seq"), tempEntity.getString("acct_type_id")));
+
+        retList.add(tempEntity);
+
+        if (rs == null) break; 
+      }while (rs.next());
+    }
+    finally
+    {
+      if (rs != null) rs.close();
+      if (psmt != null) psmt.close();
+    }
+    return retList;
+  }
+
+  public Entity getInOutTotal(Connection conn, String sStartDate, String sEndDate, String sAacctSeq, String sAcctTypeId) throws Exception {
+    Entity totalAmp = new Entity();
+
+    if ((sAcctTypeId.equals("01")) || (sAcctTypeId.equals("31")))
+      totalAmp = getInOutTotalDemand(conn, sStartDate, sEndDate, sAacctSeq);
+    else {
+      totalAmp = getInOutTotalDeposit(conn, sStartDate, sEndDate, sAacctSeq);
+    }
+    return totalAmp;
+  }
+
+  public Entity getInOutTotalDeposit(Connection conn, String sStartDate, String sEntDate, String sAacctSeq) throws Exception
+  {
+    PreparedStatement psmt = null;
+    ResultSet rs = null;
+    Entity tempEntity = new Entity();
+    int idx = 1;
+
+    StringBuffer sql = new StringBuffer();
+
+    sql.append("select sum(in_amt) amt_in, sum(out_amt) amt_out \n");
+    sql.append("from   bp_deposit_dtl \n");
+    sql.append("where  acct_seq = ? \n");
+    sql.append("and    tran_dt between ? and ? \n");
+    try
+    {
+      if (this.LOG.isDebugEnabled())
+        psmt = new LoggableStatement(conn, sql.toString());
+      else {
+        psmt = conn.prepareStatement(sql.toString());
+      }
+
+      psmt.setString(idx++, sAacctSeq);
+      psmt.setString(idx++, StringUtil.rid(sStartDate));
+      psmt.setString(idx++, StringUtil.rid(sEntDate));
+
+      if (this.LOG.isDebugEnabled()) {
+        this.LOG.debug(((LoggableStatement)psmt).getQueryString());
+      }
+
+      rs = psmt.executeQuery();
+      if ((rs != null) && (rs.next()))
+        tempEntity.parseResultSet(rs);
+    }
+    finally
+    {
+      if (rs != null) rs.close();
+      if (psmt != null) psmt.close();
+    }
+    return tempEntity;
+  }
+
+  public Entity getInOutTotalDemand(Connection conn, String sStartDate, String sEntDate, String sAacctSeq) throws Exception
+  {
+    PreparedStatement psmt = null;
+    ResultSet rs = null;
+    Entity tempEntity = new Entity();
+    int idx = 1;
+
+    StringBuffer sql = new StringBuffer();
+
+    sql.append("select sum(ifnull(case tran_clsfy when 1 then tran_amt else 0 end, 0)) amt_in \n");
+    sql.append("     , sum(ifnull(case tran_clsfy when 2 then tran_amt else 0 end, 0)) amt_out \n");
+    sql.append("from   bp_demand_current_dtl \n");
+    sql.append("where  acct_seq = ? \n");
+    sql.append("and    tran_date between ? and ? \n");
+    try
+    {
+      if (this.LOG.isDebugEnabled())
+        psmt = new LoggableStatement(conn, sql.toString());
+      else {
+        psmt = conn.prepareStatement(sql.toString());
+      }
+
+      psmt.setString(idx++, sAacctSeq);
+      psmt.setString(idx++, StringUtil.rid(sStartDate));
+      psmt.setString(idx++, StringUtil.rid(sEntDate));
+
+      if (this.LOG.isDebugEnabled()) {
+        this.LOG.debug(((LoggableStatement)psmt).getQueryString());
+      }
+
+      rs = psmt.executeQuery();
+      if ((rs != null) && (rs.next()))
+        tempEntity.parseResultSet(rs);
+    }
+    finally
+    {
+      if (rs != null) rs.close();
+      if (psmt != null) psmt.close();
+    }
+    return tempEntity;
+  }
+
+  public double getPreRemain(Connection conn, String sDate, String sAacctSeq, String sAcctTypeId) throws Exception {
+    double remain = 0.0D;
+
+    if ((sAcctTypeId.equals("01")) || (sAcctTypeId.equals("31")))
+      remain = getPreRemainDemand(conn, sDate, sAacctSeq);
+    else {
+      remain = getPreRemainDeposit(conn, sDate, sAacctSeq);
+    }
+    return remain;
+  }
+
+  public double getPreRemainDeposit(Connection conn, String sDate, String sAacctSeq) throws Exception {
+    double remain = 0.0D;
+
+    PreparedStatement psmt = null;
+    ResultSet rs = null;
+    int idx = 1;
+
+    StringBuffer sql = new StringBuffer();
+
+    sql.append("select remain tran_remain \n");
+    sql.append("from   ( \n");
+    sql.append("        select min(tran_dt) tran_dt, min(tran_date_seq) tran_date_seq \n");
+    sql.append("        from   bp_deposit_dtl aa \n");
+    sql.append("        where  acct_seq = ? \n");
+    sql.append("        and    tran_dt = ( \n");
+    sql.append("                            select max(tran_dt) \n");
+    sql.append("                            from   bp_deposit_dtl a \n");
+    sql.append("                            where  acct_seq = ? \n");
+    sql.append("                            and    tran_dt < ? \n");
+    sql.append("                            ) \n");
+    sql.append("       ) aaa, bp_deposit_dtl bbb \n");
+    sql.append("where  bbb.acct_seq = ? \n");
+    sql.append("and    bbb.tran_dt = aaa.tran_dt \n");
+    sql.append("and    bbb.tran_date_seq = aaa.tran_date_seq \n");
+    try
+    {
+      if (this.LOG.isDebugEnabled())
+        psmt = new LoggableStatement(conn, sql.toString());
+      else {
+        psmt = conn.prepareStatement(sql.toString());
+      }
+
+      psmt.setString(idx++, sAacctSeq);
+      psmt.setString(idx++, sAacctSeq);
+      psmt.setString(idx++, StringUtil.rid(sDate));
+      psmt.setString(idx++, sAacctSeq);
+
+      if (this.LOG.isDebugEnabled()) {
+        this.LOG.debug(((LoggableStatement)psmt).getQueryString());
+      }
+
+      rs = psmt.executeQuery();
+      if ((rs != null) && (rs.next()))
+        remain = rs.getDouble("tran_remain");
+      else
+        remain = getAcctRemain(conn, sAacctSeq);
+    }
+    finally
+    {
+      if (rs != null) rs.close();
+      if (psmt != null) psmt.close();
+    }
+
+    return remain;
+  }
+
+  public double getPreRemainDemand(Connection conn, String sDate, String sAacctSeq) throws Exception {
+    double remain = 0.0D;
+
+    PreparedStatement psmt = null;
+    ResultSet rs = null;
+    int idx = 1;
+
+    StringBuffer sql = new StringBuffer();
+
+    sql.append("select tran_remain \n");
+    sql.append("from   ( \n");
+    sql.append("        select min(tran_date) tran_date, min(tran_date_seq) tran_date_seq \n");
+    sql.append("        from   bp_demand_current_dtl aa \n");
+    sql.append("        where  acct_seq = ? \n");
+    sql.append("        and    tran_date = ( \n");
+    sql.append("                            select max(tran_date) \n");
+    sql.append("                            from   bp_demand_current_dtl a \n");
+    sql.append("                            where  acct_seq = ? \n");
+    sql.append("                            and    tran_date < ? \n");
+    sql.append("                            ) \n");
+    sql.append("       ) aaa, bp_demand_current_dtl bbb \n");
+    sql.append("where  bbb.acct_seq = ? \n");
+    sql.append("and    bbb.tran_date = aaa.tran_date \n");
+    sql.append("and    bbb.tran_date_seq = aaa.tran_date_seq \n");
+    try
+    {
+      if (this.LOG.isDebugEnabled())
+        psmt = new LoggableStatement(conn, sql.toString());
+      else {
+        psmt = conn.prepareStatement(sql.toString());
+      }
+
+      psmt.setString(idx++, sAacctSeq);
+      psmt.setString(idx++, sAacctSeq);
+      psmt.setString(idx++, StringUtil.rid(sDate));
+      psmt.setString(idx++, sAacctSeq);
+
+      if (this.LOG.isDebugEnabled()) {
+        this.LOG.debug(((LoggableStatement)psmt).getQueryString());
+      }
+
+      rs = psmt.executeQuery();
+      if ((rs != null) && (rs.next()))
+        remain = rs.getDouble("tran_remain");
+      else
+        remain = getAcctRemain(conn, sAacctSeq);
+    }
+    finally
+    {
+      if (rs != null) rs.close();
+      if (psmt != null) psmt.close();
+    }
+
+    return remain;
+  }
+
+  public double getRemain(Connection conn, String sDate, String sAacctSeq, String sAcctTypeId) throws Exception {
+    double remain = 0.0D;
+
+    if ((sAcctTypeId.equals("01")) || (sAcctTypeId.equals("31")))
+      remain = getRemainDemand(conn, sDate, sAacctSeq, sAcctTypeId);
+    else {
+      remain = getRemainDeposit(conn, sDate, sAacctSeq, sAcctTypeId);
+    }
+    return remain;
+  }
+
+  public double getRemainDeposit(Connection conn, String sDate, String sAacctSeq, String sAcctTypeId) throws Exception {
+    double remain = 0.0D;
+
+    PreparedStatement psmt = null;
+    ResultSet rs = null;
+    int idx = 1;
+
+    StringBuffer sql = new StringBuffer();
+
+    sql.append("select remain tran_remain \n");
+    sql.append("from   ( \n");
+    sql.append("        select min(tran_dt) tran_dt, min(tran_date_seq) tran_date_seq \n");
+    sql.append("        from   bp_deposit_dtl aa \n");
+    sql.append("        where  acct_seq = ? \n");
+    sql.append("        and    tran_dt = ( \n");
+    sql.append("                            select max(tran_dt) \n");
+    sql.append("                            from   bp_deposit_dtl a \n");
+    sql.append("                            where  acct_seq = ? \n");
+    sql.append("                            and    tran_dt <= ? \n");
+    sql.append("                            ) \n");
+    sql.append("       ) aaa, bp_deposit_dtl bbb \n");
+    sql.append("where  bbb.acct_seq = ? \n");
+    sql.append("and    bbb.tran_dt = aaa.tran_dt \n");
+    sql.append("and    bbb.tran_date_seq = aaa.tran_date_seq \n");
+    try
+    {
+      if (this.LOG.isDebugEnabled())
+        psmt = new LoggableStatement(conn, sql.toString());
+      else {
+        psmt = conn.prepareStatement(sql.toString());
+      }
+
+      psmt.setString(idx++, sAacctSeq);
+      psmt.setString(idx++, sAacctSeq);
+      psmt.setString(idx++, StringUtil.rid(sDate));
+      psmt.setString(idx++, sAacctSeq);
+
+      if (this.LOG.isDebugEnabled()) {
+        this.LOG.debug(((LoggableStatement)psmt).getQueryString());
+      }
+
+      rs = psmt.executeQuery();
+      if ((rs != null) && (rs.next()))
+        remain = rs.getDouble("tran_remain");
+      else
+        remain = getAcctRemain(conn, sAacctSeq);
+    }
+    finally
+    {
+      if (rs != null) rs.close();
+      if (psmt != null) psmt.close();
+    }
+
+    return remain;
+  }
+
+  public double getRemainDemand(Connection conn, String sDate, String sAacctSeq, String sAcctTypeId) throws Exception {
+    double remain = 0.0D;
+
+    PreparedStatement psmt = null;
+    ResultSet rs = null;
+    int idx = 1;
+
+    StringBuffer sql = new StringBuffer();
+
+    sql.append("select tran_remain \n");
+    sql.append("from   ( \n");
+    sql.append("        select min(tran_date) tran_date, min(tran_date_seq) tran_date_seq \n");
+    sql.append("        from   bp_demand_current_dtl aa \n");
+    sql.append("        where  acct_seq = ? \n");
+    sql.append("        and    tran_date = ( \n");
+    sql.append("                            select max(tran_date) \n");
+    sql.append("                            from   bp_demand_current_dtl a \n");
+    sql.append("                            where  acct_seq = ? \n");
+    sql.append("                            and    tran_date <= ? \n");
+    sql.append("                            ) \n");
+    sql.append("       ) aaa, bp_demand_current_dtl bbb \n");
+    sql.append("where  bbb.acct_seq = ? \n");
+    sql.append("and    bbb.tran_date = aaa.tran_date \n");
+    sql.append("and    bbb.tran_date_seq = aaa.tran_date_seq \n");
+    try
+    {
+      if (this.LOG.isDebugEnabled())
+        psmt = new LoggableStatement(conn, sql.toString());
+      else {
+        psmt = conn.prepareStatement(sql.toString());
+      }
+
+      psmt.setString(idx++, sAacctSeq);
+      psmt.setString(idx++, sAacctSeq);
+      psmt.setString(idx++, StringUtil.rid(sDate));
+      psmt.setString(idx++, sAacctSeq);
+
+      if (this.LOG.isDebugEnabled()) {
+        this.LOG.debug(((LoggableStatement)psmt).getQueryString());
+      }
+
+      rs = psmt.executeQuery();
+      if ((rs != null) && (rs.next()))
+        remain = rs.getDouble("tran_remain");
+      else
+        remain = getAcctRemain(conn, sAacctSeq);
+    }
+    finally
+    {
+      if (rs != null) rs.close();
+      if (psmt != null) psmt.close();
+    }
+
+    return remain;
+  }
+
+  public double getAcctRemain(Connection conn, String sAacctSeq) throws Exception {
+    double remain = 0.0D;
+
+    PreparedStatement psmt = null;
+    ResultSet rs = null;
+    int idx = 1;
+
+    StringBuffer sql = new StringBuffer();
+
+    sql.append("select acct_remain from bp_acct where acct_seq = ? ");
+    try
+    {
+      if (this.LOG.isDebugEnabled())
+        psmt = new LoggableStatement(conn, sql.toString());
+      else {
+        psmt = conn.prepareStatement(sql.toString());
+      }
+
+      psmt.setString(idx++, sAacctSeq);
+
+      if (this.LOG.isDebugEnabled()) {
+        this.LOG.debug(((LoggableStatement)psmt).getQueryString());
+      }
+
+      rs = psmt.executeQuery();
+      if ((rs != null) && (rs.next()))
+        remain = rs.getDouble("acct_remain");
+    }
+    finally
+    {
+      if (rs != null) rs.close();
+      if (psmt != null) psmt.close();
+    }
+
+    return remain;
+  }
+
+  public ArrayList getBpCardBillData(Connection conn, Entity param, Entity user)
+    throws Exception
+  {
+    PreparedStatement pstmt = null;
+    ResultSet rs = null;
+    ArrayList list = new ArrayList();
+    StringBuffer sql = new StringBuffer();
+
+    int idx = 1;
+    try
+    {
+      sql.append("select aa.card_seq, aa.bank_id, aa.bank_name, aa.card_no \n");
+      sql.append("     , count(f.card_seq) cnt, sum(ifnull(f.check_pay_amount, 0)) totalamt, \n");
+      sql.append("     (select settle_tot_amt from bp_card_settle where card_seq = aa.card_seq and settle_pay_month = f.settle_pay_month) as total \n");
+      sql.append("from   ( \n");
+      sql.append("        select b.card_seq, e.bank_id, e.bank_name, b.card_no  \n");
+      sql.append("        from   bp_card_by_user a, bp_card b, bp_sched_acct c, bp_bank e \n");
+      sql.append("        where  a.user_id = ? \n");
+      sql.append("        and    b.card_seq = a.card_seq \n");
+      sql.append("        and    c.acct_no = b.card_no \n");
+      sql.append("        and    c.bank_type = '02' \n");
+      sql.append("        and    e.bank_type = '02' \n");
+      sql.append("        and    e.bank_id = b.bank_id \n");
+      sql.append("      ) aa left outer join bp_card_settle_dtl f \n");
+      sql.append("   on  (f.card_seq = aa.card_seq  \n");
+      sql.append("        and f.settle_pay_month= ?) \n");
+      sql.append("group  by aa.bank_id, aa.bank_name, aa.card_no \n");
+      sql.append("order  by bank_name, card_no \n");
+
+      if (this.LOG.isDebugEnabled()) {
+        pstmt = new LoggableStatement(conn, sql.toString());
+      }
+      else {
+        pstmt = conn.prepareStatement(sql.toString());
+      }
+
+      pstmt.setString(idx++, user.getString("user_id"));
+      pstmt.setString(idx++, param.getString("bill_yyyymm"));
+
+      if (this.LOG.isDebugEnabled()) {
+        this.LOG.debug(((LoggableStatement)pstmt).getQueryString());
+      }
+
+      rs = pstmt.executeQuery();
+
+      while (rs.next()) {
+        Entity tmp = new Entity();
+        tmp.parseResultSet(rs);
+        list.add(tmp);
+      }
+    }
+    catch (Exception e) {
+      throw e;
+    } finally {
+      if (rs != null) rs.close();
+      if (pstmt != null) pstmt.close();
+    }
+    return list; } 
+  public ArrayList getErpCardBillData(Connection conn, Entity param) throws Exception { PreparedStatement pstmt = null;
+
+    Entity xmlSqlData = null;
+    Entity tmpSql = null;
+
+    ResultSet rs = null;
+    ArrayList list = new ArrayList();
+    String sql = "";
+    ErpStatementUtil exu;
+    ErpXmlParser exp;
+    try { ErpXmlParser exp = new ErpXmlParser(param.getString("biz_reg_no"));
+      ErpStatementUtil exu = new ErpStatementUtil();
+
+      xmlSqlData = exp.getSqlData("erp_data_check");
+
+      tmpSql = xmlSqlData.getEntity("3");
+
+      sql = tmpSql.getString("statement");
+      if (this.LOG.isDebugEnabled()) pstmt = new LoggableStatement(conn, sql); else {
+        pstmt = conn.prepareStatement(sql);
+      }
+      exu.setStatementValue(pstmt, (Entity[])tmpSql.getArrayList("params").toArray(new Entity[0]), param);
+
+      if (this.LOG.isDebugEnabled()) {
+        this.LOG.debug(((LoggableStatement)pstmt).getQueryString());
+      }
+
+      rs = (ResultSet)exu.execute(pstmt, tmpSql.getString("executeType"));
+
+      while (rs.next()) {
+        Entity tmp = new Entity();
+        tmp.parseResultSet(rs);
+        list.add(tmp);
+      }
+    } catch (Exception e)
+    {
+      throw e;
+    } finally {
+      if (rs != null) rs.close();
+      if (pstmt != null) pstmt.close();
+    }
+    ErpStatementUtil exu;
+    ErpXmlParser exp;
+    return list;
+  }
+}

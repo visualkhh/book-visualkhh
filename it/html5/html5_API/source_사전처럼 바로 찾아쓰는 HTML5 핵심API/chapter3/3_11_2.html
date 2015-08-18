@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<style type="text/css">
+
+canvas {
+	border-style: solid;
+	border-color: black;
+	border-width: 2px;
+}
+
+</style>
+<meta charset="UTF-8" />
+<title>fillText() with Web Fonts</title>
+<link href='http://fonts.googleapis.com/css?family=Reenie+Beanie' rel='stylesheet' type='text/css'>
+<style>
+h1 { font-family: 'Reenie Beanie'; }
+</style>
+<script>
+(function () {
+window.addEventListener("load", function(){ 
+// 화면 처리
+draw();
+// 버튼에 click 이벤트 리스너를 지정
+var button = document.querySelector("button");
+button.addEventListener("click", draw, false); 
+}, false);
+
+// 화면 처리
+function draw() {
+// 2D 컨텍스트
+var canvas = document.querySelector("canvas");
+var context = canvas.getContext("2d");
+// Canvas를 지우기
+context.clearRect(0, 0, canvas.width, canvas.height); 
+// 텍스트를 정의
+var text = "Google Font Directory";
+//폰트를정의
+context.font = "bold 34px 'Reenie Beanie'";
+// 텍스트 속을 채워서 그리기
+context.fillText(text, 20, 80);
+} 
+
+})();
+</script>
+</head>
+<body>
+<h1>fillText() with Web Fonts</h1>
+<canvas width="300" height="150"></canvas> <p><button>다시 그리기</button></p>
+</body> 
+</html>

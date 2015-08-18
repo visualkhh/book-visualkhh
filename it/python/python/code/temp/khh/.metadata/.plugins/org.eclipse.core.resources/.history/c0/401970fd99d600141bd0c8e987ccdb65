@@ -1,0 +1,8 @@
+HSHELL_REDRAW=6
+WM_SHELL=10
+
+def my_callback(nCode, wParam, lParam):
+    if nCode == HSHELL_REDRAW and lParam:
+        got_flashing_window_with_hwnd(wParam)
+
+hook = user32.SetWindowsHookEx(WM_SHELL, my_callback, None, 0)

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:element name="booklist">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="book" minOccurs="1" maxOccurs="unbounded">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="name" type="xsd:string" />
+              <xsd:element name="page" type="xsd:integer" />
+              <xsd:element name="publish" minOccurs="0" maxOccurs="1">
+                <xsd:complexType>
+                  <xsd:attribute name="year" type="xsd:integer" use="required" />
+                  <xsd:attribute name="month" use="optional">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:integer">
+                        <xsd:minInclusive value="1" />
+                        <xsd:maxInclusive value="12" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:attribute>
+                  <xsd:attribute name="date" use="optional">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:integer">
+                        <xsd:minInclusive value="1" />
+                        <xsd:maxInclusive value="30" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:attribute>
+                </xsd:complexType>
+              </xsd:element>
+            </xsd:sequence>
+            <xsd:attribute name="isbn" type="xsd:ID" use="required" />
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

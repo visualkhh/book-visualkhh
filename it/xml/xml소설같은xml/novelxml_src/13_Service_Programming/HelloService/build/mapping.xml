@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<java-wsdl-mapping xmlns="http://java.sun.com/xml/ns/j2ee"
+                          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                          version="1.1"
+                          xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
+                  http://www.ibm.com/webservices/xsd/j2ee_jaxrpc_mapping_1_1.xsd">
+	<package-mapping>
+		<package-type>helloservice</package-type>
+		<namespaceURI>http://localhost:8080</namespaceURI>
+	</package-mapping>
+	<package-mapping>
+		<package-type>helloservice</package-type>
+		<namespaceURI>http://localhost:8080</namespaceURI>
+	</package-mapping>
+	<service-interface-mapping>
+		<service-interface>helloservice.HelloService</service-interface>
+		<wsdl-service-name xmlns:serviceNS="http://localhost:8080">
+			serviceNS:HelloService
+		</wsdl-service-name>
+		<port-mapping>
+			<port-name>HelloIFPort</port-name>
+			<java-port-name>HelloIFPort</java-port-name>
+		</port-mapping>
+	</service-interface-mapping>
+	<service-endpoint-interface-mapping>
+		<service-endpoint-interface>
+			helloservice.HelloIF
+		</service-endpoint-interface>
+		<wsdl-port-type xmlns:portTypeNS="http://localhost:8080">
+			portTypeNS:HelloIF
+		</wsdl-port-type>
+		<wsdl-binding xmlns:bindingNS="http://localhost:8080">
+			bindingNS:HelloIFBinding
+		</wsdl-binding>
+		<service-endpoint-method-mapping>
+			<java-method-name>sayHello</java-method-name>
+			<wsdl-operation>sayHello</wsdl-operation>
+			<method-param-parts-mapping>
+				<param-position>0</param-position>
+				<param-type>java.lang.String</param-type>
+				<wsdl-message-mapping>
+					<wsdl-message xmlns:wsdlMsgNS="http://localhost:8080">
+						wsdlMsgNS:HelloIF_sayHello
+					</wsdl-message>
+					<wsdl-message-part-name>String_1</wsdl-message-part-name>
+					<parameter-mode>IN</parameter-mode>
+				</wsdl-message-mapping>
+			</method-param-parts-mapping>
+			<wsdl-return-value-mapping>
+				<method-return-value>java.lang.String</method-return-value>
+					<wsdl-message xmlns:wsdlMsgNS="http://localhost:8080">
+						wsdlMsgNS:HelloIF_sayHelloResponse
+					</wsdl-message>
+					<wsdl-message-part-name>result</wsdl-message-part-name>
+			</wsdl-return-value-mapping>
+		</service-endpoint-method-mapping>
+	</service-endpoint-interface-mapping>
+</java-wsdl-mapping>

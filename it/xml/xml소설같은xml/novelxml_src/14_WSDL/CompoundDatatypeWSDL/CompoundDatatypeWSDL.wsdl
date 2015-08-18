@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://localhost:8080" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="HelloService" targetNamespace="http://localhost:8080">
+	<types>
+		<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap11-enc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://localhost:8080">
+			<import namespace="http://schemas.xmlsoap.org/soap/encoding/" /> 
+			<complexType name="ArrayOfstring">
+				<complexContent>
+					<restriction base="soap11-enc:Array">
+						<attribute ref="soap11-enc:arrayType" wsdl:arrayType="string[]" /> 
+					</restriction>
+				</complexContent>
+			</complexType>
+		</schema>
+	</types>
+	<message name="HelloIF_sayHello">
+		<part name="arrayOfString_1" type="tns:ArrayOfstring" /> 
+	</message>
+	<message name="HelloIF_sayHelloResponse">
+		<part name="result" type="xsd:string" /> 
+	</message>
+	<portType name="HelloIF">
+		<operation name="sayHello" parameterOrder="arrayOfString_1">
+			<input message="tns:HelloIF_sayHello" /> 
+			<output message="tns:HelloIF_sayHelloResponse" /> 
+		</operation>
+	</portType>
+	<binding name="HelloIFBinding" type="tns:HelloIF">
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" /> 
+		<operation name="sayHello">
+			<soap:operation soapAction="" /> 
+			<input>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://localhost:8080" /> 
+			</input>
+			<output>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://localhost:8080" /> 
+			</output>
+		</operation>
+	</binding>
+	<service name="HelloService">
+		<port name="HelloIFPort" binding="tns:HelloIFBinding">
+			<soap:address location="http://your-5a13201ed9:8080/hello-jaxrpc/hello" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" /> 
+		</port>
+	</service>
+</definitions>

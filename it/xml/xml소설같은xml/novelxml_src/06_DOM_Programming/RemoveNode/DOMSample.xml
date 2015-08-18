@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!DOCTYPE root [
+<!ELEMENT root (Element1, Element2, Element3)>
+<!ELEMENT Element1 (#PCDATA)>
+<!ELEMENT Element2 (#PCDATA)>
+<!ELEMENT Element3 (#PCDATA)>
+<!ATTLIST root Attr1 CDATA #IMPLIED
+			   Attr2 CDATA #IMPLIED
+			   Attr3 CDATA #IMPLIED>
+]>
+
+<root Attr1="1" Attr2="2" Attr3="3">
+    <Element1>A</Element1>
+    <Element2>B</Element2>
+    <Element3>C</Element3>
+</root>

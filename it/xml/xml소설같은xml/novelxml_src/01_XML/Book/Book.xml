@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="EUC-KR" standalone="yes"?>
+
+<Book ISBN="X7-82219821-7">
+	<Title>XML과 XML Web Services</Title>
+	<Author>이명진</Author>
+	<Page>877</Page>
+	<Publish year="2005" month="11" date="5" />
+	<Price unit="원">2300</Price>
+</Book>

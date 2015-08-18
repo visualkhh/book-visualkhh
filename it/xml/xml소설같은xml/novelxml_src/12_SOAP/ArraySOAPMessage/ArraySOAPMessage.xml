@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<env:Envelope xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:enc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:ns0="http://localhost:8080" env:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+	<env:Body>
+		<ns0:sayHello>
+			<arrayOfString_1 href="#ID1"/>
+		</ns0:sayHello>
+		<ns0:ArrayOfstring id="ID1" xsi:type="enc:Array" enc:arrayType="xsd:string[3]">
+			<item xsi:type="xsd:string">Jhone</item>
+			<item xsi:type="xsd:string">Duke</item>
+			<item xsi:type="xsd:string">Micheal</item>
+		</ns0:ArrayOfstring>
+	</env:Body>
+</env:Envelope>

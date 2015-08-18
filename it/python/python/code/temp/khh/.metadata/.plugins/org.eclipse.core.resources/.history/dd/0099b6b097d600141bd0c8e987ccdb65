@@ -1,0 +1,9 @@
+import os
+def addToClipBoard(text):
+    command = 'echo ' + text.strip() + '| clip'
+    os.system(command)
+
+#example
+addToClipBoard('penny lane')
+
+#Penny Lane is now in your ears,eyes and clipboard

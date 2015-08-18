@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html> 
+<html lang="ko"> 
+<head> <meta charset="UTF-8" /> 
+<title>element.innerHTML 예제</title> 
+<link rel="stylesheet" href="style.css" type="text/css" /> 
+<script> 
+window.onload = function() { 
+  var target = document.getElementById("target"); 
+  //alert(target.innerHTML); 
+  //target.innerHTML = "이 부분이 <b>바뀌었습니다.</b>"; 
+  alert(target.outerHTML); 
+  target.outerHTML = "이 부분이 <b>바뀌었습니다.</b>"; 
+  
+}; 
+</script> 
+</head> 
+<body> 
+ 
+<h1>element.innerHTML 예제</h1> 
+<p id="target">이<b>부분</b>이 바뀝니다.</p> 
+ 
+</body> 
+</html>

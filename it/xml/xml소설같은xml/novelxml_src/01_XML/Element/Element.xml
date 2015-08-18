@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="euc-kr"?>
+
+<Book>
+	<Title>XML</Title>
+	<Title>XML
+	<Title>XML</title>
+	<Publish></Publish>
+	<Publish/>
+	<Author><name>이명진<name></Author>
+	<Author><name>이명진</Author></name>
+
+</Book>

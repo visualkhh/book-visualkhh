@@ -1,0 +1,59 @@
+<!DOCTYPE html> 
+<html lang="ko"> 
+<head> 
+<meta charset="UTF-8" /> 
+<title>element.classList 예제</title> 
+<link rel="stylesheet" href="style.css" type="text/css" /> 
+<script> 
+ 
+var span = null; 
+window.addEventListener("load", function() { 
+  // 대상 span 요소 
+  span = document.getElementById("test"); 
+  // 콘솔을 갱신
+  console_update() 
+}, false); 
+ 
+// bbb 를 제거하고, ddd를 추가
+function token_replace() { 
+  // class 속성의 DOMTokenList 오브젝트 
+  var tokenlist = span.classList; 
+  // 토큰 bbb 를 제거 
+  tokenlist.remove("bbb"); 
+  // 토큰 ddd 를 추가
+  tokenlist.add("ddd"); 
+  // 콘솔 갱신 
+  console_update() 
+} 
+ 
+// aaa 의 추가 제거를 전환 
+function token_toggle() { 
+  // class 속성의 DOMTokenList 오브젝트 
+  var tokenlist = span.classList; 
+  // 전환
+  tokenlist.toggle("aaa"); 
+  // 콘솔을 갱신
+  console_update() 
+} 
+ 
+// span 요소의 마크업을 pre 요소 안에 표시 
+function console_update() { 
+  var pre = document.getElementById("console"); 
+  pre.innerHTML = span.className; 
+} 
+ 
+</script> 
+</head> 
+<body> 
+ 
+<h1>element.classList 의 예제</h1> 
+ 
+<p> 
+  <span class="aaa bbb ccc" id="test"></span> 
+  <input type="button" onclick="token_replace();" value="바꾸기" /> 
+  <input type="button" onclick="token_toggle();" value="토글" /> 
+</p> 
+<pre id="console"></pre> 
+ 
+</body> 
+</html>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml-stylesheet type="text/xsl" href="catalog.xsl"?>
+
+<Catalog>
+   <Book id="1861003323">
+      <Title part="XML">Professional VB6 XML</Title>
+   </Book>
+   <Book id="1861003129">
+      <Title part="XSLT">XSLT Programmer's Reference</Title>
+   </Book>
+   <Book id="1861003451">
+      <Title part="C">C++ Programming</Title>
+   </Book>
+</Catalog>

@@ -1,0 +1,138 @@
+
+
+
+예제 15.1
+var ws = new WebSocket("ws://localhost/chat");
+
+
+
+예제 15.2
+var result = ws.send("메시지");
+
+예제 15.3
+ws.onmessage = function(event){
+	alert("서버로부터 받은 메시지: " + event.data);
+};
+
+예제 15.4
+ws.addEventListener("message", function(event){
+	alert("서버로부터 받은 메시지: " + event.data);
+}, false);
+
+
+
+예제 15.5
+ws.onopen = function(event){
+	submitButton.disabled = false;
+}
+ws.onclose = function(event){
+	submitButton.disabled = true;
+}
+
+
+
+예제 15.6
+svn checkout http://pywebsocket.googlecode.com/svn/trunk/	pywebsocket-read-only
+
+
+예제 15.7
+def web_socket_do_extra_handshake(request):
+	# 클라이언트로부터의 접속 요청을 처리한 직후 호출됨
+	pass
+
+def web_socket_transfer_data(request):
+	# 클라이언트와의 접속에 성공하고 나서 호출됨
+	pass
+
+
+예제 15.8　chat_wsh.py
+from mod_pywebsocket import msgutil
+connections = []
+def web_socket_do_extra_handshake(request):
+	# 모든 접속을 받아들임
+	pass
+def web_socket_transfer_data(request):
+	# 모든 클라이언트의 접속을 저장해 둠 - ①
+	connections.append(request)
+	while True:
+		try:
+			# 클라이언트로부터 메시지를 수신할 때까지 기다림 - ②
+			message = msgutil.receive_message(request)
+		except Exception:
+			# 접속이 끊어졌으므로 처리 종료
+			return
+		# 모든 클라이언트로 메시지를 보냄 ? ③
+		for con in connections:
+			try:
+				# 메시지를 보냄
+				msgutil.send_message(con, message)
+			except Exception:
+				# 메시지를 보낼 수 없는 클라이언트는 제외
+				connections.remove(con)
+
+
+
+예제 15.9　websocket-chat.html
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Web Sockets Chat</title>
+</head>
+<body>
+<h1>Web Sockets Chat</h1>
+<textarea id="chatlog" readonly cols=30 rows=10></textarea><br>
+<input id="name" type="text" size="6" placeholder="이름">
+<input id="message" type="text" size="20" placeholder="메시지">
+<button id="submitButton" onclick="submitMessage()" disabled>송신
+</button>
+<script type="text/javascript">
+// 서버에 통신을 요청
+var ws = new WebSocket("ws://localhost/chat");
+// 서버로부터 메시지 수신
+ws.onmessage = function(event) {
+	// 채팅 로그 출력
+	document.getElementById("chatlog").textContent += event.data + "\n";
+};
+// 서버와의 연결이 설정됨
+ws.onopen = function(event) {
+	document.getElementById("submitButton").disabled = false;
+};
+// 서버와의 통신이 끊어짐
+ws.onclose = function(event) {
+	document.getElementById("submitButton").disabled = true;
+	alert("서버와의 접속이 끊겼습니다.");
+};
+function submitMessage() {
+	var name = document.getElementById("name").value;
+	var message = document.getElementById("message").value;
+	// 서버로 메시지를 보냄
+	ws.send(name + ">" + message);
+}
+</script>
+</body>
+</html>
+
+
+
+예제 15.10
+python standalone.py -p <포트 번호> -w <핸들러 저장 디렉터리>
+			-s <핸들러를 스캔할 디렉터리>
+			-d <도큐먼트 루트> 
+
+
+
+예제 15.11
+export PYTHONPATH=<pywebsocket가 확인할 디렉터리>/pywebsocket-read-only/src/:$PYTHONPATH
+
+
+
+
+예제 15.12
+set PYTHONPATH=＜pywebsocket가 확인할 디렉터리＞/pywebsocket-read-only/src/;%PYTHONPATH%
+
+
+
+
+예제 15.13
+python standalone.py -d <예제 소스가 저장된 디렉터리>

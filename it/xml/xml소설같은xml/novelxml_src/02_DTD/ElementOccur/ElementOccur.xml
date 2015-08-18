@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="euc-kr"?>
+
+<!DOCTYPE BookList [
+<!ELEMENT BookList (Book+)>
+<!ELEMENT Book (Title, Author*, (PubDate | Date)?)>
+<!ELEMENT Title (#PCDATA)>
+<!ELEMENT Author (#PCDATA)>
+<!ELEMENT PubDate EMPTY>
+<!ELEMENT Date EMPTY>
+]>
+
+<BookList>
+	<Book>
+		<Title>XML 프로그래밍</Title>
+		<Author>아무게</Author>
+		<PubDate />
+	</Book>
+	<Book>
+		<Title>XML Web Services</Title>
+	</Book>
+	<Book>
+		<Title>흥부와 놀자</Title>
+		<Author>몽진</Author>
+		<Author>이씨</Author>
+		<Date />
+	</Book>
+</BookList>

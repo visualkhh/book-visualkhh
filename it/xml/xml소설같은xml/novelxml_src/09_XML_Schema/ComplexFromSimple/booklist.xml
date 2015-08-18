@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<booklist xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:noNamespaceSchemaLocation="booklist.xsd">
+	<book isbn="h0-596-00762-0">
+		<name part="XML">Professional VB6 XML</name>
+		<authors>
+			<author>Juval Lowy</author>
+		</authors>
+		<page>648</page>
+		<publish year="2005" month="06" />
+		<price unit="won">51300</price>
+	</book>
+	<book isbn="h0-596-10068-X">
+		<name part="XSLT">XSLT Programmer's Reference</name>
+		<authors>
+			<author>eBay Hacks, Second Edition</author>
+		</authors>
+		<page>464</page>
+		<publish year="2005" month="06" />
+		<price unit="won">28500</price>
+	</book>
+</booklist>

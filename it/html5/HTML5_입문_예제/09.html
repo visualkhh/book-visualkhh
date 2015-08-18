@@ -1,0 +1,419 @@
+
+
+
+예제 9.1
+<p>선이나 채우기를 할 때 투명도를 지정할 수도 있습니다.</p>
+<figure>
+<dt>예제 5 globalAlpha 속성을 이용</dt>
+	<dd>
+		<pre><code>
+		// 반투명 사각형을 그림
+		cx.globalAlpha = 0.5;
+		cx.fillRect(0, 0, 100, 100);
+		</code></pre>
+	</dd>
+</figure>
+<p>위의 코드를 실행하면 캔버스 위에 반투명의 사각형이 그려집니다.</p>
+　
+
+
+
+예제 9.2
+<p>위의 코드를 실행하면 캔버스에 반투명 사각형이 그려집니다.</p>
+<figure>
+	<dd><img src="globalAlpha.png" alt="globalAlpha 예제를 실행한 결과"></dd>
+<dt>그림: 실행 결과</dt>
+</figure>
+
+
+
+예제 9.3
+<embed src="example.swf" quality="high">
+
+
+예제 9.4
+<object data="example.swf">
+ <param name="quality" value="high">
+</object>
+
+
+
+예제 9.5
+<p>아래는 '인간 실격'에서 인용</p>
+<blockquote>
+...
+신께 묻습니다. 무저항은 죄인가요?<br>
+호리키의 저 불가사의한 아름다운 미소에 나는 울며, ...
+인간, 실격.<br>
+<mark>이미, 나는, 완전히, 더는 인간이 아닙니다.</mark><br>
+여기에 왔던 것은 여름 초입 무렵으로, ...
+</blockquote>
+<p>다자이 오사무(太宰 治)의 문장 여기저기 볼 수 있는 것은 강조한 부분에서 보는 것처럼 <em>통상에서 벗어난 구두점의 사용</em>인 것이다.... </p>
+
+
+
+예제 9.6
+신께 묻습니다. 무저항은 죄인가요?<br>
+호리키의 저 불가사의한 아름다운 미소에 나는 울며, ...
+<mark>인간</mark>, 실격.<br>
+이미, 나는, 완전히, 더는 <mark>인간</mark>이 아닙니다.<br>
+여기에 왔던 것은 여름 초입 무렵으로, ...
+
+
+예제 9.7
+<time>2009-11-28</time>
+<time datetime="2009-11-28"></time>
+<!-- 요소 안쪽에 써넣은 문자열이 표시됨 -->
+<time datetime="2009-11-28T00:00:00+09:00">마감일</time>
+
+
+예제 9.8
+<article>
+	<h1>오늘은 맑음</h1>
+	<p>. . . 기사 본문 . . . </p>
+	<footer>
+		<!-- 공개 일시 -->
+		Published <time datetime="2009-11-28T17:23+09:00"></time>
+	</footer>
+</article>
+
+
+
+예제 9.9
+<ruby>
+漢
+	<rp>(</rp>
+	<rt>한</rt>
+	<rp>)</rp>
+字
+	<rp>(</rp>
+	<rt>자</rt>
+	<rp>)</rp>
+</ruby>
+
+
+
+
+예제 9.10
+<details open>
+	<dt>상세 정보</dt>
+	<dd>
+		<dl>
+			<dt>크기</dt><dd>562 x 136</dd>
+			<dt>색상 모드</dt><dd>RGB</dd>
+			<dt>컬러 프로파일</dt><dd>Color LCD</dd>
+			<dt>알파 채널</dt><dd>아니오</dd>
+			<dt>마지막으로 연 날</dt>
+			<dd><time datetime="2009-11-20T06:48+09:00">오늘 6:48</time></dd>
+		</dl>
+	</dd>
+</details>
+
+
+예제 9.11
+<!-- 로그인 화면 -->
+<div id="loginScreen">
+ . . .
+<button onclick="tryLogin()">로그인</button>
+</div>
+<!-- 메인 화면. 기본은 표시하지 않음임 -->
+<div id="mainScreen" hidden>
+ . . .
+
+</div>
+<script>
+function tryLogin(){
+	if(loginSuccess()){
+		// 로그인에 성공하면 화면을 전환
+		document.getElementById("loginScreen").hidden = true;
+		document.getElementById("mainScreen").hidden = false;
+	}
+
+}
+. . . 
+</script>
+
+
+예제 9.12
+<iframe	sandbox	src="http://example.org/gadget.html">
+</iframe>
+
+
+예제 9.13
+<iframe	sandbox="allow-scripts" src="http://example.org/gadget.html">
+</iframe>
+
+
+예제 9.14
+<iframe
+		sandbox="allow-scripts allow-forms allow-same-origin"
+		src="http://example.org/gadget.html">
+</iframe>
+
+
+
+예제 9.15
+<nav>
+	<iframe	seamless	src="nav.include.html"></iframe>
+</nav>
+
+
+
+예제 9.16
+<!-- ad.js를 비동기로 읽어들임 -->
+<script async src="ad.js"></script>
+
+
+예제 9.17
+<!--
+* async가 지원되지 않을 때 ad.js를 비동기로 읽어들인 다음 바로 실행함
+* async는 사용할 수 없으니 defer가 지원될 때 ad.js를 비동기로 읽어들인 다음 페이지 파싱이 끝나면 실행함.
+* 둘 다 지원되지 않을 때 ad.js의 로딩과 실행이 바로 이루어짐(파싱 정지)
+-->
+<script async defer src="ad.js"></script>
+
+
+
+예제 9.18
+<body>
+<h1>페이지 제목</h1>
+<section>
+	<style scoped>
+	h1{font-style: italic}
+	</style>
+	<h1>섹션 제목<h1>
+</section>
+</body>
+
+
+
+예제 9.19
+<a href="top.html" ping="/track.php">홈으로</a>
+
+
+
+예제 9.20
+<!-- /track.php에서 처리한 후 top.html로 리다이렉트 --> 
+<a href="/track.php?linkTo=top.html">홈으로</a>
+
+
+
+예제 9.21
+<!-- 고양이를 나타내는 아이템 작성 -->
+<div itemscope>
+	<!-- 아래는 속성 -->
+	<span itemprop="name">나비</span>
+	<time itemprop="birthday" datetime="2009-11-19">
+	<img itemprop="photo" src="http://example.org/images/cats/nabi.jpg">
+	<div itemprop="mother" itemscope>
+		<span itemprop="name">냥이</span>
+	</div>
+</div>
+
+
+예제 9.22
+<div	itemprop="prop1 prop2">
+	value
+</div>
+
+
+
+예제 9.23
+<ul>
+	<li itemprop="color">빨간색</li>
+	<li itemprop="color">흰색</li>
+</ul>
+
+
+
+예제 9.24
+<!-- 고양이를 나타내는 아이템 작성 -->
+<div itemscope>
+	<!-- 아래는 속성 -->
+	<span itemprop="name">나비</span>
+	<time itemprop="birthday" datetime="2009-11-19">
+	<img itemprop="photo" src="http://example.org/images/cats/nabi.jpg">
+	<!-- itemref 속성에 의해 id=mike인 요소를 참조하고 있음 -->
+	<div itemprop="mother" itemscope itemref="nyang-i"></div>
+</div>
+<!-- 냥이 -->
+<div id="mike" itemscope>
+	<span itemprop="name">냥이</span>
+</div>
+
+
+예제 9.25
+<!-- 아이템의 형을 itemtype 속성으로 지정 -->
+<div itemscope itemtype="http://example.org/cat">
+	~ 생략 ~
+	<div itemprop="mother" itemscope itemref="mike"></div>
+</div>
+<div id="mike" itemscope itemtype="http://example.org/cat">
+	<span itemprop="name">냥이</span>
+</div>
+
+
+예제 9.26
+<!-- ID가 1인 고양이를 정의 --> 
+<div itemscope
+		 itemtype="http://example.org/cat"
+			itemid="1">
+	<span itemprop="name">나비</span>
+	~ 생략 ~
+</div>
+
+
+
+예제 9.27
+var s = "";
+<!-- 고양이의 데이터를 모두 얻음 -->
+var cats = document.getItems("http://example.org/cat") ;
+for (var i = 0; i < cats.length; i++) {
+	var cat = cats[i];
+	s += "ID=" + cat.itemId + ", properties={";
+	var props = [];
+	// 모든 속성에 대해 루프 처리
+	for (var j = 0, n = cat.properties.names.length ; j < n; j++) {
+		var propName = cat.properties.names[j] ;
+		var prop = cat.properties[propName] ;
+		// values 속성은 '배열과 비슷한 요소'이므로 slice를 이용하여 배열로 변환
+		var values = Array.prototype.slice.call(prop[propName].values);
+		props.push(propName + ":" + values);
+	}
+	s += props.join(",") + "}\n";
+}
+alert(s);
+
+
+
+예제 9.28
+<tr id="cat_1" data-id="1" data-name="나비">
+. . .
+</tr>
+
+
+
+예제 9.29
+var row = document.getElementById("cat_1");
+// age라는 커스텀 데이터 속성을 추가
+row.dataset.age = "3" ;
+// id라는 커스텀 데이터 속성을 추가
+alert( row.dataset.id );
+// getAttribute()일 때는 접두어가 필요
+alert( row.getAttribute("data-id") );
+// data-age 속성 삭제
+delete row.dataset.age ;
+
+
+
+
+예제 9.30
+<option value="" disabled>--</option>
+
+
+
+예제 9.31
+<menu type="toolbar">
+	<menu label="표시">
+		<menu label="도구 모음">
+			...
+		</menu>
+		<command type="command" label="Firebug" onclick="...">
+		<command type="checkbox" label="상태 표시줄" onclick="...">
+		<menu label="사이드 바">
+			<command type="command" label="즐겨찾기">
+			...
+		</menu>
+		<hr>
+		<command type="command" label="중지" onclick="..." disabled>
+		...
+	</menu>
+	<menu label="이력">
+	...
+	</menu>
+</menu>
+
+
+
+
+예제 9.32
+// trans-en-ko 프로토콜을 Google 번역에 연결함 
+navigator.registerProtocolHandler(
+"trans-en-ko", 
+"http://translate.google.co.kr/translate?js=y&prev=_t&hl=ko&ie=UTF-8&layout=1&eotf=1&sl=en&tl=ko&u=%s", 
+"Google 영한 번역"
+);
+
+
+예제 9.33
+<!-- WHATWG URL에서 프로토콜 부분을 trans-en-ko로 바꿈 --> 
+<a href="trans-en-ko://www.whatwg.org/">WHATWG</a>
+
+
+예제 9.34
+http://translate.google.co.kr/translate?js=y&prev=_t&hl=ko&ie=UTF-8&layout=1&eotf=1&sl=en&tl=ko&u=trans-en-ko%3A%2F%2Fwhatwg.org%2F
+
+
+
+예제 9.35
+<div id="div1" class="a b">1</div>
+<div id="block">
+	<div id="div2" class="b c">2</div>
+	<div id="div3" class="a b c">3</div>
+</div>
+<!-- div1, div3이 반환됨 --> 
+document.getElementsByClassName("a") ;
+<!-- div2, div3이 반환됨 --> 
+document.getElementsByClassName("b c") ;
+<!-- div3이 반환됨 --> 
+document.getElementById("block").getElementsByClassName("a");
+
+
+
+예제 9.36
+// innerHTML 속성에 값을 지정
+document.getElementById("message").innerHTML = "<span class='error'>에러가 발생하였습니다.</span>";
+
+
+
+예제 9.37
+<div id="abc">ABC</div>
+// 결과는 'ABC'
+alert(document.getElementById("abc").innerHTML);
+
+
+
+
+예제 9.38
+// 결과는 '<div id="abc">ABC</div>'
+alert(document.getElementById("abc").outerHTML);
+
+
+
+예제 9.39
+var ol = document.getElementsByTagName("ol")[0];
+ol.insertAdjacentHTML("afterbegin", "<li>딸기</li>");
+element.classList
+
+
+예제 9.40
+<div id="loading-message" class="message error">
+</div>
+var msg = document.getElementById("loading-message");
+// 클래스로부터 'error'를 제거(앞뒤의 공백도 함께 제거)
+msg.className = msg.className.replace(/\s*error\s*/, "")
+
+
+
+
+예제 9.41
+// 클래스 이름으로부터 'error'를 제거
+msg.classList.remove("error") ;
+
+
+예제 9.42
+var navLinks = document.querySelectorAll("body > nav ul > li a[href]");
+for (var i = 0; i < navLinks.length; i++) {
+	var navLink = navLinks[i];
+	...
+}

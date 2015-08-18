@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="euc-kr"?>
+
+<com:Computer xmlns:com="http://www.computer.com">
+	<com:CPU>Pentium 2.0</com:CPU>
+	<com:Memory>512 MB</com:Memory>
+	<com:GraphicCard>
+		Radeon 9200
+	</com:GraphicCard>
+</com:Computer>

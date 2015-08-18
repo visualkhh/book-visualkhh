@@ -1,0 +1,106 @@
+
+
+
+예제 7.1
+<li id="apple1" draggable="true">사과</li>
+
+
+예제 7.2
+<!-- ondragstart 속성 안에서 onDragStart() 함수를 호출하고 있음 -->
+<ul id="list1"
+	ondragstart="onDragStart(event)">
+	<li id="apple1" draggable="true">사과</li>
+	<li id="grape1" draggable="true">포도</li>
+	<li id="orange1" draggable="true">오렌지</li>
+</ul>
+// 드래그 시작 시 처리
+function onDragStart(event) {
+	// li 요소만을 처리 대상으로 함
+	if (event.target.tagName.toLowerCase() == "li") {
+		// DataTransfer에 데이터를 넣음
+		event.dataTransfer.setData("listItemId", event.target.id);
+	} else {
+		// li 요소가 아니라면 처리하지 않음
+		event.preventDefault();
+	}
+}
+　
+
+
+예제 7.3
+<ul id="list1"
+	ondragstart="onDragStart(event)"
+	ondragenter="onDragEnter(event)"
+	ondragover="onDragOver(event)"
+	ondrop="onDrop(event)">
+	<li id="apple1" draggable="true">APPLE</li>
+	<li id="grape1" draggable="true">GRAPE</li>
+	<li id="orange1" draggable="true">ORANGE</li>
+</ul>
+
+<script type="text/javascript">
+
+// drop 이벤트 핸들러
+function onDrop(event){
+	// 드래그된 데이터(리스트 항목의 ID)을 얻음
+	var id = event.dataTransfer.getData("listItemId");
+	var li = document.getElementById(id);
+	// 다른 한쪽의 ul 요소로부터 li 요소를 삭제하고 드롭할 곳의 ul 요소에 추가
+	if(li && li.parentNode != event.currentTarget){
+		li.parentNode.removeChild(li);
+		event.currentTarget.appendChild(li);
+	}
+	// 드롭이 처리된 후 이벤트 버블링을 막음
+	event.stopPropagation();
+}
+
+// dragover 이벤트 핸들러
+function onDragOver(event){
+	// 드롭을 받아들이도록 기본 상태를 취소함
+	event.preventDefault();
+}
+
+function onDragEnter(event){
+	// DataTransfer에 들어 있는 데이터의 타입이 
+	// 'listItemId'를 포함했을 때만 드래그를 받아들임
+	var types = event.dataTransfer.types;
+	for(var i = 0; i < types.length; i++){
+		if(types[i] == "listItemId"){
+			event.preventDefault();
+			return;
+		}
+	}
+}
+</script>
+
+
+
+
+예제 7.4
+~ 중간 생략 ~
+// 드롭 시의 처리
+function onDrop(event) {
+	// 드롭된 텍스트 데이터를 얻음
+	var content = event.dataTransfer.getData("text/plain");
+	var tableHtml = "<table border=1>"
+	// 줄 바꿈으로 문자열을 분할
+	var lines = content.split("\n");
+	for (var i = 0; i < lines.length; i++) {
+		if (lines[i].length == 0) {
+			continue;
+		}
+		// 탭으로 행을 분할
+		var rowData = lines[i].split("\t");
+		tableHtml += "<tr>";
+		for (var j = 0; j < rowData.length; j++) {
+			tableHtml += "<td>" + rowData[j] + "</td>";
+		}
+		tableHtml += "</tr>";
+	}
+	tableHtml += "</table>";
+	// 테이블로 표시
+	document.getElementById("dispArea").innerHTML = tableHtml;
+	event.stopPropagation();
+	return false;
+}
+~ 이하 생략 ~

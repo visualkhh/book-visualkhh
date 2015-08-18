@@ -1,0 +1,7 @@
+Internet Explorer
+Firefox
+Chrome
+Safari
+Opera
+Sleipnir
+Lunascape

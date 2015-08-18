@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html> 
+<html lang="ko">  
+<head> 
+<meta charset="UTF-8" /> 
+<title>DOM 트리</title> 
+<script type="text/javascript">
+
+window.addEventListener("load", function() {
+  var lists = 
+  {
+    1: document.getElementsByClassName("a"),
+    2: document.getElementsByClassName("b"),
+    3: document.getElementsByClassName("c"),
+    4: document.getElementsByClassName("c a")
+  };
+  for( var n in lists ) 
+  {
+    var nodelist = lists[n];
+    var hits = [];
+	
+	for( var i=0; i<nodelist.length; i++ ) 
+	{
+      var element = nodelist.item(i);
+      hits.push(element.id);
+    }
+    var dd = document.getElementById("res" + n);
+    dd.innerHTML = hits.join(" ");
+  }
+}, false);
+
+
+</script>
+</head> 
+<body> 
+<ul>
+  <li class="a" id="A">A. class=&quot;a&quot;</li>
+  <li class="b" id="B">B. class=&quot;b&quot;</li>
+  <li class="a b c" id="C">C. class=&quot;a b c&quot;</li>
+</ul>
+<dl>
+  <dt>document.getElementsByClassName(&quot;a&quot;)</dt>
+  <dd id="res1">-</dd>
+  <dt>document.getElementsByClassName(&quot;b&quot;)</dt>
+  <dd id="res2">-</dd>
+  <dt>document.getElementsByClassName(&quot;c&quot;)</dt>
+  <dd id="res3">-</dd>
+  <dt>document.getElementsByClassName(&quot;c a&quot;)</dt>
+  <dd id="res4">-</dd>
+</dl>
+</body> 
+</html>

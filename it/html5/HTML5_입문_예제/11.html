@@ -1,0 +1,168 @@
+
+
+
+
+예제 11.1　hello.manifest
+CACHE MANIFEST
+
+# 아래가 캐시할 리소스(#는 주석)
+hello.html
+hello.js
+hello.css
+
+
+
+예제 11.2
+# manifesto라는 확장자 파일에 대해 MIME 타입을 설정
+text/cache-manifest		menifest
+
+
+예제 11.3
+<!DOCTYPE html>
+<html manifest="hello.manifest">
+...
+</html>
+
+
+예제 11.4
+CACHE MANIFEST
+# 위 첫 줄은 필수
+#
+# 샾(#) 기호는 주석을 표시
+#
+#  Version: 200911271108
+#
+# 여기서는 섹션을 명시적으로 지정하지 않았으므로
+# CACHE 섹션이 됨
+hello.html
+# 폴백 섹션
+FALLBACK:
+./		fallback.html
+# 온라인 화이트 리스트 섹션
+NETWORK:
+./api/
+# 명시적으로 CACHE 섹션을 시작할 수도 있음
+# 같은 섹션이 하나의 파일에 여러 번 등록되어도 상관없음
+CACHE:
+hello.css
+
+
+
+
+
+예제 11.5
+FALLBACK:
+./	fallback.html
+
+
+예제 11.6
+CACHE MANIFEST
+NETWORK
+/api/
+
+
+
+예제 11.7
+W3C 로고: <img src="http://www.w3.org/Icons/w3c_home.png">
+
+예제 11.8
+CACHE MANIFEST
+NETWORK:
+/api/
+# 애스터리스크 문자만 지정
+*
+
+
+
+
+예제 11.9
+// 애플리케이션 캐시가 업데이트 중일 때
+// 특정 처리 수행
+switch(applicationCache.status){
+case applicationCache.CHECKING:
+	// 업데이트 체크
+	. . . 
+	break;
+case applicationCache.DOWNLOADING:
+	// 업데이트 다운로드
+	. . .
+	break;
+default:
+	// 그 이외의 처리
+	. . .
+}
+
+
+예제 11.10
+applicationCache. addEventListener("updateready", function() {
+	// updateready 이벤트 시의 처리
+	. . .
+}, false);
+
+예제 11.11
+applicationCache.onupdateready = function() {
+	// updateready 이벤트 시의 처리
+	. . .
+}
+
+
+
+
+
+예제 11.12　hello.manifest
+CACHE MANIFEST
+# Version 200911301127
+helo.html
+
+
+
+예제 11.13　hello.html
+<!DOCTYPE HTML>
+<html manifest="hello.manifest">
+<head>
+<meta charset="UTF-8">
+<title>Hello</title>
+<script type="text/javascript">
+function init() {
+	// 10초마다 업데이트 체크
+	setInterval(function() {
+		applicationCache.update();
+		}, 10000);
+	}
+	// 캐시가 업데이트되었다면 사용자에게 확인 후 브라우저를 새로고침
+	applicationCache.onupdateready = function() {
+	if (confirm("업데이트를 이용할 수 있습니다. 업데이트하시겠습니까?")) {
+		location.reload();
+	}
+};
+</script>
+</head>
+<body onload="init()">
+<h1>애플리케이션 캐시 예제</h1>
+<p>안녕하세요!</p>
+</body>
+</html>
+
+
+
+
+예제 11.14
+// 네트워크 상태가 오프라인으로 변환
+window.addEventListener("offline" , function() {
+	alert("오프라인이 되었습니다.");
+}, false);
+// 네트워크 상태가 온라인으로 변화
+window.addEventListener("online" , function() {
+	alert("온라인이 되었습니다.");
+}, false);
+// 현재 네트워크 상태를 표시
+alert("onLine?" + window.navigator.onLine );
+
+
+
+
+예제 11.15
+CACHE MANIFEST
+# Version: 200911301231
+hello.html
+. . .

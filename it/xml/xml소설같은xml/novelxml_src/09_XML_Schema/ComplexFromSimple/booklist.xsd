@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:element name="booklist">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="book" minOccurs="1" maxOccurs="unbounded">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="name">
+                <xsd:complexType>
+                  <xsd:simpleContent>
+                    <xsd:extension base="xsd:string">
+                      <xsd:attribute name="part" use="optional">
+                        <xsd:simpleType>
+                          <xsd:restriction base="xsd:string">
+                            <xsd:enumeration value="XML" />
+                            <xsd:enumeration value="XSLT" />
+                            <xsd:enumeration value="Schema" />
+                          </xsd:restriction>
+                        </xsd:simpleType>
+                      </xsd:attribute>
+                    </xsd:extension>
+                  </xsd:simpleContent>
+                </xsd:complexType>
+              </xsd:element>
+              <xsd:element name="authors">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element name="author" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+              <xsd:element name="page">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:integer">
+                    <xsd:minInclusive value="1" />
+                    <xsd:maxInclusive value="1500" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:element>
+              <xsd:element name="publish" minOccurs="0" maxOccurs="1">
+                <xsd:complexType>
+                  <xsd:attribute name="year" type="xsd:integer" use="optional" />
+                  <xsd:attribute name="month" use="optional">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:integer">
+                        <xsd:minInclusive value="1" />
+                        <xsd:maxInclusive value="12" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:attribute>
+                  <xsd:attribute name="date" use="optional">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:integer">
+                        <xsd:minInclusive value="1" />
+                        <xsd:maxInclusive value="30" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:attribute>
+                </xsd:complexType>
+              </xsd:element>
+              <xsd:element name="price">
+                <xsd:complexType>
+                  <xsd:simpleContent>
+                    <xsd:extension base="xsd:integer">
+                      <xsd:attribute name="unit" use="optional" default="won">
+                        <xsd:simpleType>
+                          <xsd:restriction base="xsd:string">
+                            <xsd:enumeration value="won" />
+                            <xsd:enumeration value="dollor" />
+                          </xsd:restriction>
+                        </xsd:simpleType>
+                      </xsd:attribute>
+                    </xsd:extension>
+                  </xsd:simpleContent>
+                </xsd:complexType>
+              </xsd:element>
+            </xsd:sequence>
+            <xsd:attribute name="isbn" type="xsd:ID" use="required" />
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

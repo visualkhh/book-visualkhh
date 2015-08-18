@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html> 
+<html lang="ko"> 
+<head> 
+<meta charset="UTF-8" /> 
+<title>document.write()의 예제2</title> 
+<link rel="stylesheet" href="style.css" type="text/css" /> 
+<script> 
+function replace() { 
+  document.write( 
+    '<!DOCTYPE html>', 
+    '<html lang=ja>', 
+    '<meta charset=UTF-8>', 
+    '<title>', document.title, '</title>', 
+    '<h1>', document.title, '</h1>', 
+    '<p>페이지 다시쓰기를 완료했습니다.</p>' 
+  ); 
+} 
+</script> 
+</head> 
+<body> 
+ 
+<h1>페이지 다시쓰기 테스트 </h1> 
+<p><input type="button" onclick="replace();" value="실행" /></p> 
+ 
+</body> 
+</html>

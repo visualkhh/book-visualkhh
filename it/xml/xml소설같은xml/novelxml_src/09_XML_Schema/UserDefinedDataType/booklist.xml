@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<booklist xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:noNamespaceSchemaLocation="booklist.xsd">
+	<book>
+		<part>XML</part>
+		<name>Professional VB6 XML</name>
+		<page>648</page>
+	</book>
+	<book>
+		<part>XSLT</part>
+		<name>XSLT Programmer's Reference</name>
+		<page>464</page>
+	</book>
+</booklist>

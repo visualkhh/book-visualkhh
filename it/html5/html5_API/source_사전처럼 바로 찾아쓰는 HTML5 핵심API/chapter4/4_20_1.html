@@ -1,0 +1,94 @@
+<!DOCTYPE html> 
+<html lang="ko">  
+<head>
+<style type="text/css">
+
+#player {
+  padding: 0;
+  width: 480px;
+  font-family: Arial;
+  font-size: 12px;
+  color: #fff;
+  text-align: left;
+  /* 둥근모서리 */
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  /* 그라데이션 */
+  background: #666666;
+  background: linear-gradient(top, #bbb, #444 20%, #555 80%, #222);
+  background: -moz-linear-gradient(top, #bbb, #444 20%, #555 80%, #222);
+  background: -webkit-gradient(linear, left top, left bottom,
+    color-stop(0, #bbb), color-stop(20%, #333),
+    color-stop(80%, #555), color-stop(100%, #222)
+  );
+}
+#player button {
+  margin: 5px;
+  font-size: 12px;
+  text-align: center;
+  width: 30px;
+  color: #fff;
+  border: 1px solid #000;
+  text-shadow: #000 1px 1px 1px;
+  font-family: Arial;
+  vertical-align: middle;
+  /* 둥근 모서리 */
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  /* 그라데이션 */
+  background: #666666;
+  background: linear-gradient(top, #bbb, #444 20%, #555 80%, #222);
+background: -moz-linear-gradient(top, #bbb, #444 20%, #555 80%, #222);
+background: -webkit-gradient(linear, left top, left bottom,
+    color-stop(0, #bbb), color-stop(20%, #333),
+    color-stop(80%, #555), color-stop(100%, #222)
+  );
+}
+#player canvas {
+  border-top: 1px solid #000;
+  border-right: 1px solid #999;
+  border-bottom: 1px solid #999;
+  border-left: 1px solid #000;
+  vertical-align: middle;
+}
+#player span {
+  display: inline-block;
+  vertical-align: middle;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#thumbnail {
+  margin: 0;
+  position: absolute;
+  border: 2px solid black;
+  display: none;
+}
+#thumbnail.show {
+  display: block;
+}
+
+</style>
+
+
+<meta charset="UTF-8" /> 
+<title>  </title> 
+ <script src="4_20_1.js"></script>
+</head> 
+<body> 
+
+<div id="player">
+  <video autoplay="auto play" width="480" height="272">
+    <source src="video.mp4" type="video/mp4" />
+    <source src="video.webm" type="video/webm" />
+  </video>
+  <!-- 재생버튼 -->
+<button title="정지 " class="pl">&#x25ae;&#x25ae;</button>
+<!—현재 재생위치를 나타내는 타임라인 -->
+  <canvas width="420" height="15" class="timeline"></canvas>
+</div>
+
+
+
+</body> 
+</html>

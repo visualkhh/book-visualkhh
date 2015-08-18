@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<root Attr1="1" Attr2="2" Attr3="3">
+    <Element1>A</Element1>
+    <Element2>B</Element2>
+    <Element3>C</Element3>
+</root>

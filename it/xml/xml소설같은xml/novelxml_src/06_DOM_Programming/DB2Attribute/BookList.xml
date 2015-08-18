@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BookList>
+<Book Author="James Britt, Teun Duynstee" CoverImage="3323.gif" ISBN="1-861003-32-3" Price="49.99" PubDate="March 2000" Publisher="Wrox Press, Ltd." Stock="4" Title="Professional VB6 XML" id="W1861003323" part="XML"/>
+<Book Author="Michael Kay" CoverImage="3129.gif" ISBN="1-861003-12-9" Price="34.99" PubDate="April 2000" Publisher="Wrox Press, Ltd." Stock="2" Title="XSLT Programmer's Reference" id="W1861003129" part="XSLT"/>
+<Book Author="Niel M." CoverImage="netxml.gif" ISBN="0-596-00397-8" Price="39.95" PubDate="November 2003" Publisher="Oreilly" Stock="6" Title=".NET &amp; XML" id="W1861003130" part="XML"/>
+<Book Author="Michael itzgerald" CoverImage="learnxslt.gif" ISBN="0-596-00327-7" Price="34.95" PubDate="November 2003" Publisher="Oreilly" Stock="5" Title="Learning XSLT" id="W1861003112" part="XSLT"/>
+</BookList>

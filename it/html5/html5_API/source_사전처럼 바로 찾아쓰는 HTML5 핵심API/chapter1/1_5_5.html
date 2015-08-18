@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html> 
+<html lang="ko"> 
+<head> 
+<meta charset="UTF-8" /> 
+<title>XHR + createHTMLDocument() 예제</title> 
+<link rel="stylesheet" href="style.css" type="text/css" /> <script> 
+window.addEventListener("load", function() { 
+  var xhr = new XMLHttpRequest(); 
+  xhr.onreadystatechange = function() { 
+    if( this.readyState != 4 ) { return; } 
+    if( this.status != 200 ) { return; } 
+    // document 오브젝트를 새로 생성
+    var doc = document.implementation.createHTMLDocument("dummy"); 
+    // XHR로 읽어들인 HTML 식별자를 새롭게 생성한document 오브젝트의 body 요소에 삽입 
+    doc.body.innerHTML = this.responseText; 
+    // XHR로읽어들인 ul 요소 
+    var ul = doc.getElementsByClassName("whatsnew").item(0); 
+    // 오늘 날짜
+    var dt = new Date(); 
+    var y = dt.getYear() + 1900; 
+    var m = dt.getMonth() + 1; 
+    
+    if(m < 10) { m = "0" + m; } 
+    
+    var d = dt.getDate(); 
+    
+    if(d < 10) { d = "0" + d; } 
+    var today = y + "-" + m + "-" + d; 
+    // li 요소를 위에서부터 배치 
+    var list = ul.getElementsByTagName("li"); 
+    for( var i=0; i<list.length; i++ ) { 
+      // li 요소 
+      var li = list.item(i); 
+      // li 요소 안에 있는 time 요소 
+      var time = li.getElementsByTagName("time").item(0); 
+      // 오늘 날짜면 li 요소의 맨뒤에 문자를 추가 
+      if(time.innerHTML == today) { 
+        li.insertAdjacentHTML("beforeend", "[신규]"); 
+      } 
+    } 
+    // 변환된 HTML 식별자를 책 문서에 추가
+    document.getElementById("box").innerHTML = doc.body.innerHTML; 
+  }; 
+  xhr.open("GET", "xhr.html"); 
+  xhr.send(); 
+}, false); 
+</script> 
+</head> 
+<body> 
+ 
+<h1>XHR + createHTMLDocument()의 예제</h1> 
+<div id="box"></div> 
+ 
+</body> 
+</html> 

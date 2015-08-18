@@ -1,0 +1,36 @@
+<!DOCTYPE html> 
+<html lang="ko">  
+<head>
+<style type="text/css">
+
+menu {
+	margin-left: 40px;
+	list-style-type: none;
+	list-style-position: inside;
+}
+
+menu li {
+	float: left;
+}
+
+</style>
+
+<meta charset="UTF-8" /> 
+<title>  </title> 
+ <script src="4_13_1.js"></script>
+</head> 
+<body> 
+<p>
+<video controls="controls" preload="auto" > <!-- width="480" height="272" -->
+  <source src="video.mp4" type="video/mp4" />
+  <source src="video.webm" type="video/webm" />
+</video>
+</p>
+<menu>
+  <li><button id="bk">처음으로 </button></li>
+  <li><button id="fr">&lt;&lt 5초 뒤로 </button></li>
+  <li><button id="ff">5초 앞으로&gt;&gt;</button></li>
+  <li>재생위치：<span id="time">-</span>초 </li>
+</menu>
+</body> 
+</html>

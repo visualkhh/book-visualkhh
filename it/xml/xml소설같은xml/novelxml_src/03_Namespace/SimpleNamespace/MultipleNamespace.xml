@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<!-- both namespace prefixes are available throughout -->
+<bk:book xmlns:bk="http://www.book.net" xmlns:isbn="http://www.isbn.org">
+	<bk:title>Cheaper by the Dozen</bk:title>
+	<isbn:number>1568491379</isbn:number>
+</bk:book>

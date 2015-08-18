@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="euc-kr" standalone="no"?>
+<?xml-stylesheet type="text/xsl" href="booklist.xsl"?>
+<!DOCTYPE booklist SYSTEM "booklist.dtd">
+
+<!-- Book List XML Document -->
+<booklist>
+	<book isbn="h0-596-00762-0">
+		<name outpage="ProgrammingNETComponents.gif">Programming .NET Components, Second Edition</name>
+		<authors>
+			<author>Juval Lowy</author>
+		</authors>
+		<page>648</page>
+		<publish year="2005" month="06" />
+		<price unit="won">51300</price>
+	</book>
+</booklist>

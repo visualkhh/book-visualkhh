@@ -1,0 +1,193 @@
+
+
+
+
+예제 12.1
+localStorage.setting = { color: "red", lang: "ko_KR" };
+
+
+
+예제 12.2
+localStorage["setting"] = { color: "red", lang: "ko_KR" };
+
+
+예제 12.3
+localStorage.setItem("setting", { color: "red", lang: "ko_KR" });
+
+
+예제 12.4
+var settings = localStorage.settings;
+var settings = localStorage["settings"];
+var settings = localStorage.getItem["settings"];
+
+
+예제 12.5
+delete localStorage.settings;
+delete localStorage["settings"];
+localStorage.removeItem("settings");
+
+
+예제 12.6
+// 모든 데이터 삭제
+localStorage.clear();
+
+
+예제 12.7
+for(var i = 0; i < localStorage.length; i++){
+	var key = localStorage.key(i);
+	var value = localStorage[key];
+	. . .
+}
+
+
+예제 12.8
+for(var key in localStorage){
+	var value = localStorage[key];
+	. . .
+}
+
+
+예제 12.9
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>세션 스토리지 뷰어</title>
+</head>
+<body onload="showAll()">
+<h1>세션 스토리지 뷰어</h1>
+키: <input id="k" type="text"> 값:<input id="v" type="text">
+<button onclick="save()">저장</button>
+<button onclick="remove()">삭제</button>
+<button onclick="window.open(location.href);">윈도우 생성</button>
+<hr>
+<select id="entries" size=5 onchange="onEntrySelected()">
+</select>
+<button onclick="showAll()">다시 표시</button>
+<script type="text/javascript">
+var key = document.getElementById("k");
+var value = document.getElementById("v");
+var entries = document.getElementById("entries");
+// 스토리지 내용을 모두 표시함
+function showAll() {
+	//목록을 클리어
+	entries.innerHTML = "";
+	// 루프를 이용하여 스토리지 내용을 확인
+	for (var i = 0; i < sessionStorage.length; i++) {
+		var k = sessionStorage.key(i) ;
+		entries.options[entries.options.length] =
+			new Option(k + ":" + sessionStorage[k] , k);
+	}
+}
+// 스토리지에 값을 저장
+function save() {
+	sessionStorage[key.value] = value.value;
+	showAll();
+}
+// 스토리지로부터 값을 삭제
+function remove() {
+	delete sessionStorage[key.value];
+	showAll();
+}
+// 선택된 엔트리를 텍스트 필드에 표시
+function onEntrySelected() {
+	var selectedOption = entries.options[entries.selectedIndex];
+	key.value = selectedOption.value;
+	value.value = sessionStorage[selectedOption.value];
+}
+</script>
+</body>
+</html>
+
+
+예제 12.10
+window.addEventListener("storage" , function(event) {
+	// 스토리지가 변경될 때의 처리
+	alert("키:" + event.key +
+		" 이전 값:" + event.oldValue +
+		" 지금 값:" + event.newValue );
+}, false);
+
+
+
+예제 12.11(예제 12.9로부터 발췌)
+//스토리지에 값을 저장
+function save() {
+	sessionStorage[key.value] = value.value;
+	// 목록을 다시 표시
+	 showAll();
+}
+// 스토리지로부터 값을 삭제
+function remove() {
+	delete sessionStorage[key.value];
+	// 목록을 다시 표시
+	 showAll();
+}
+　
+
+
+예제 12.12
+// 스토리지에 변경이 있으면 목록을 다시 표시
+// showAll() 메소드를 이벤트 리스너에 등록
+window.addEventListener("storage", showAll, false);
+// 스토리지에 값을 저장
+function save() {
+	localStorage[key.value] = value.value;
+}
+// 스토리지로부터 값을 삭제
+function remove() {
+	delete localStorage[key.value];
+}
+
+
+
+예제 12.13
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>로컬 스토리지 뷰어</title>
+</head>
+<body onload="showAll()">
+<h1>로컬 스토리지 뷰어</h1>
+키: <input id="k" type="text"> 값: <input id="v" type="text">
+<button onclick="save()">저장</button>
+<button onclick="remove()">삭제</button>
+<button onclick="window.open(location.href);">윈도우 생성</button>
+<hr>
+<select id="entries" size=5 onchange="onEntrySelected()">
+</select>
+<script type="text/javascript">
+var key = document.getElementById("k");
+var value = document.getElementById("v");
+var entries = document.getElementById("entries");
+// 스토리지에 변경이 있으면 목록을 다시 표시함
+window.addEventListener("storage", showAll, false);
+// 스토리지 내용 전체를 표시
+function showAll() {
+// 스토리지 클리어
+	entries.innerHTML = "";
+	// 루프를 이용하여 스토리지 내용을 확인
+	for (var i = 0; i < localStorage.length; i++) {
+		var k = localStorage.key(i);
+		entries.options[entries.options.length] =
+			new Option(k + ":" + localStorage[k], k);
+	}
+}
+// 스토리지에 값을 저장
+function save() {
+	localStorage[key.value] = value.value ;
+}
+// 스토리지로부터 값을 삭제
+function remove() {
+	 delete localStorage[key.value] ;
+}
+// 선택된 엔트리를 텍스트 필드에 표시
+function onEntrySelected() {
+	var selectedOption = entries.options[entries.selectedIndex];
+	key.value = selectedOption.value;
+	value.value = localStorage[selectedOption.value];
+}
+</script>
+</body>
+</html>

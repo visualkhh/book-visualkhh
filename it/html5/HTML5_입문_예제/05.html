@@ -1,0 +1,181 @@
+예제 5.1
+<nav>
+	<ul>
+		<li><a href="top.html">홈으로</a></li>
+		<li><a href="entries.html">게시물 목록</a></li>
+	</ul>
+</nav>
+
+예제 5.2
+<article>
+블로그 본문
+	<section class="comments">
+		<article>
+		덧글 1
+		</article>
+		<article>
+		덧글 2
+		</article>
+	</section>
+</article>
+
+
+
+예제 5.3
+<aside class="sidebar">
+	<section class="profile">
+	프로필
+	</section>
+	<nav class="archives">
+	게시물 목록
+	</nav>
+	<section class="ad">
+	광고
+	</section>
+</aside>
+
+
+
+예제 5.4
+<article>
+	<hgroup>
+		<h1>본문 제목</h1>
+		<h2>본문 주제목</h2>
+	</hgroup>
+	블로그 본문
+	<section class="comments">
+		<article>
+			<h1>덧글 1 제목</h1>
+			덧글 1
+		</article>
+		<article>
+			<h1>덧글 2 제목</h1>
+			덧글 2
+		</article>
+	</section>
+</article>
+
+
+
+예제 5.5
+<section>
+	 <h1>제목 1</h1>
+	본문 1
+	 <h2>제목 2</h2>
+	본문 2
+</section>
+
+
+
+
+예제 5.6
+<section>
+	<h1>제목 1</h1>
+	본문 1
+	<section>
+		<h2>제목 2</h2>
+		본문 2
+	</section>
+</section>
+
+
+예제 5.7
+<section>
+	 <h1>제목 1</h1>
+	본문 1
+	<!-- 위와 같은 수준의 제목(h1)을 사용 --> 
+	 <h1>제목 2</h1>
+	본문 2
+</section>
+
+
+
+예제 5.8
+<section>
+	<h1>제목 1</h1>
+	본문 1
+</section>
+<section>
+	<h1>제목 2</h1>
+	본문 2
+</section>
+	
+
+
+예제 5.9
+<section id="chap3">
+	<h1>3장 XXX</h1>
+	<section id="chap3-1">
+		<h1>3-1 YYY</h1>
+			<section id="chap3-1-1">
+				<h1>3-1-1 ZZZ</h1>
+			</section>
+	</section>
+</section>
+
+
+
+예제 5.10
+<body>
+	<h1>body 요소의 제목 </h1>
+	<section>
+		<h1>section 요소의 제목 </h1>
+		<!-- 
+			blockquote 안의 아웃라인은 바깥(body)의 아웃라인에는 영향을 주지 않음
+		-->
+		<blockquote>
+			<h1>blockquote 제목 </h1>
+			<section>
+				<h1>인용된 내용에 포함된 섹션</h1>
+				...
+			</section>
+		</blockquote>
+		<section>
+			<h1>section 요소의 제목 2</h1>
+		</section>
+	</section>
+</body>
+
+
+
+예제 5.11
+<article>
+	...본문 ...
+	<address>
+		<a href="mailto:shiraishi@example.com">저자: 시라이시 쥰페이</a>
+	</address>
+</article>
+　
+
+예제 5.12
+<article>
+	...본문 ...
+	 <time datetime="2009-10-05" pubdate>10월 5일</time> 공개
+</article>
+
+예제 5.13
+<article>
+	<header>
+		<hgroup>
+			<h1>본문 제목</h1>
+			<h2>본문 부제목</h2>
+		</hgroup>
+		<nav>
+			<ul>
+				<li><a href="prev.php">이전 날짜 일기</a></li>
+				<li><a href="next.php">다음 날짜 일기</a></li>
+			</ul>
+		</nav>
+	</header>
+	블로그 본문
+	<section class="comments">
+		<article>
+			<h1>덧글 1 제목</h1>
+		 덧글 1 
+		</article>
+	</section>
+	<footer>
+		<a href="mailto:shiraishi@example.com">저자: 시라이시 쥰페이</a>
+		<time datetime="2009-10-05" pubdate>10월 5일</time> 공개
+	</footer>
+</article>

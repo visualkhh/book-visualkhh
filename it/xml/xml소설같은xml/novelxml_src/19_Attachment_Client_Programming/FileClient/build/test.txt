@@ -1,0 +1,89 @@
+import javax.xml.soap.*;
+import java.net.URL;
+import javax.activation.DataHandler;
+
+import java.util.Iterator;
+import java.io.*;
+import java.awt.*;
+import java.awt.image.*;
+
+public class AttachmentClient {
+	public static void main(String args[]) throws Exception {
+		MessageFactory messageFactory = MessageFactory.newInstance();
+		SOAPMessage requestMessage = messageFactory.createMessage();
+
+/*		AttachmentPart attachment = requestMessage.createAttachmentPart();
+		String stringContent = "Update address for Sunny Skies ";
+
+		attachment.setContent(stringContent, "text/plain");
+		attachment.setContentId("update_address");
+*/
+		URL attachURL = new URL("file:///C:/TestCode/Java/AttachmentClient/build/Office_Logo.gif");
+		DataHandler dataHandler = new DataHandler(attachURL);
+		
+		AttachmentPart attachment = requestMessage.createAttachmentPart(dataHandler);
+		attachment.setContentId("Office_Logo");
+		attachment.setContentType("image/gif");
+
+		requestMessage.addAttachmentPart(attachment);
+		
+		SOAPConnectionFactory soapConnectionFactory = SOAPConnectionFactory.newInstance();
+		SOAPConnection connection = soapConnectionFactory.createConnection();
+
+		SOAPMessage responseMessage = connection.call(requestMessage, "http://localhost:7000/attach_saaj/attachmentService");
+		
+		SOAPBody soapBody = responseMessage.getSOAPBody();
+		
+		if (soapBody.hasFault()) {
+			SOAPFault soapFault = soapBody.getFault();
+			
+			String faultCode = soapFault.getFaultCode();
+			String faultAuctor = soapFault.getFaultActor();
+			String faultString = soapFault.getFaultString();
+			
+			System.out.println("Fault Code : " + faultCode);
+			System.out.println("Fault Auctor : " + faultAuctor);
+			System.out.println("Fault String : " + faultString);
+		} else {
+			System.out.println("Message Sending Success");
+		}
+		
+					Iterator iterator = responseMessage.getAttachments();
+					AttachmentPart attachment1 = (AttachmentPart)iterator.next();
+					
+					String attachmentId = attachment1.getContentId();
+					String attachmentType = attachment1.getContentType();
+
+					//InputStream content = (InputStream)attachment.getContent();
+
+					String fileType = new String();
+					if (attachmentType.equals("text/plain")) {
+						fileType = ".txt";
+					} else if (attachmentType.equals("text/html")) {
+						fileType = ".html";
+					} else if (attachmentType.equals("image/jpeg")) {
+						fileType = ".jpg";
+					} else if (attachmentType.equals("image/gif")) {
+						fileType = ".gif";
+					} else if (attachmentType.equals("application/msword")) {
+						fileType = ".doc";
+					} else {
+						fileType = "";
+					}
+					
+					File attachFile = new File("c:\\TestCode\\Java\\" + "test" + fileType);
+					FileOutputStream fos = new FileOutputStream(attachFile);
+					//fos.write(content.toString().getBytes());
+					
+					// 스트림 파일 처리
+					//InputStream content = (InputStream)attachment1.getContent();
+					//File attachFile = new File("c:\\TestCode\\Java\\" + "test" + fileType);
+					//FileOutputStream fos = new FileOutputStream(attachFile);
+					//int streamTemp;
+					//int streamLength = 0;
+					//while((streamTemp = content.read()) != -1) {
+					//	fos.write(i);
+					//	streamLength++;
+					//}
+	}
+}

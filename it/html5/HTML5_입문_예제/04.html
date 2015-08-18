@@ -1,0 +1,168 @@
+예제 4.1
+<!-- src 속성에 동영상 파일의 URL을 지정 -->
+<video src="http://example.com/movie1.ogv"></video>
+
+
+
+예제 4.2
+<video src="http://example.com/video1.mov"></video>
+<audio src="http://example.com/audio1.wav"></audio>
+
+
+예제 4.3
+<video src="http://example.com/video1.mov" controls loop autoplay></video>
+
+
+
+예제 4.4
+<h1>Video 요소 예제</h1>
+<video id="video1" controls
+	src="http://upload.wikimedia.org/wikipedia/commons/d/df/Kornati.ogv">
+	이 페이지를 보려면 video 요소를 지원하는 브라우저를 이용하여 주십시오.
+</video>
+
+
+예제 4.5
+<!-- Vorbis 형식의 오디오 데이터 --> 
+<source src="..." type="audio/vorbis"></source>
+<!-- Ogg 형식의 비디오 데이터 --> 
+<source src="..." type="video/ogg"></source>
+
+
+
+예제 4.6
+<video id="video1" src="http://example.com/movie1.mov"></video>
+....
+// video 요소 DOM 객체를 생성
+var video1 = document.getElementById("video1");
+// 동영상 재생
+video1. play() ;
+// 동영상 일시 정지
+video1. pause() ;
+
+
+예제 4.7　simplevideoplayer.html
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>간단한 동영상 플레이어</title>
+<script type="text/javascript">
+function playOrPauseVideo() {
+	var videoUrl = document.getElementById("videoUrl").value;
+	var video = document.getElementById("video");
+ //video가 재생 중이지 않을 때
+	if (video.paused ) {
+		//URL이 바뀌었다면 미디어 데이터를 다시 읽어들임
+		if (videoUrl != video.src ) {
+			video.src = videoUrl;
+			video.load() ;
+		} else {
+			// 재생
+			video.play() ;
+		}
+		document.getElementById("playButton").value = "일시 정지";
+	} else {
+		// 일시 정지
+		video.pause();
+		document.getElementById("playButton").value = "정지";
+	}
+}
+</script>
+</head>
+<body>
+<!-- 동영상.autoplay를 지정하였으므로 데이터를 읽어들이기가 완료되면 자동으로 재생을 시작 -->
+<video id="video" width="400" height="300" autoplay></video><br>
+동영상 URL:<input type="text" id="videoUrl">
+<input id="playButton" type="button" onclick="playOrPauseVideo()" 
+value="재생">
+</body>
+</html>
+
+
+
+
+예제 4.8　음성 데이터 프리로드 예제
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>음성 데이터 프리로드 예제</title>
+<script type="text/javascript">
+	//Audio 객체를 여러 개 생성
+	var audios = {
+		"262Hz": new Audio(
+			
+"http://upload.wikimedia.org/wikipedia/commons/0/03/262Hz.ogg"),
+		"392Hz": new Audio(
+			
+"http://upload.wikimedia.org/wikipedia/commons/7/71/392Hz.ogg")
+	};
+	// 페이지 로딩이 끝나면 이 페이지에서 사용할 음성 데이터를 읽어들여 캐시에 저장
+	function preload() {
+		for (var i in audios) {
+			audios[i].load();
+		}
+	}
+</script>
+</head>
+<body onload="preload()">
+<button onclick="audios['262Hz'].play()">262Hz</button>
+<button onclick="audios['392Hz'].play()">392Hz</button>
+</body>
+</html>
+
+예제 4.9 예제 4.1을 수정
+~ 중간 생략 ~
+var video = document.getElementById("video");
+//addEventListener 메소드를 이용하여 이벤트 포착
+video.addEventListener("timeupdate" , function() {
+	var timeDisplay = document.getElementById("time");
+	//현재 어디까지 재생이 진행되었는지를 초 단위로 표시
+	timeDisplay.innerHTML = Math.floor(video.currentTime) + "/" + 
+		Math.floor(video.duration) + " (초)"
+}, false);
+~ 이하 생략 ~
+
+
+
+예제 4.10 video 요소 에러 발생 시 메시지 출력
+~ 중간 생략 ~
+var video = document.getElementById("video");
+video.addEventListener("error" , function() {
+	var error = video.error;
+	switch( error.code ) {
+		case 1:
+			alert("다운로드가 중지되었습니다.");
+			break;
+		case 2:
+			alert("네트워크 에러로 다운로드가 중지되었습니다.");
+			break;
+		case 3:
+			alert("디코딩에 실패했습니다.");
+			break;
+		case 4:
+			alert("지원되지 않는 파일 형식입니다.");
+			break;
+	}
+}, false);
+~ 이하 생략 ~
+
+
+
+
+예제 4.11　networkState 속성의 이용례
+~ 중간 생략 ~
+var video = document.getElementById("video");
+video.addEventListener("progress" , function(e) {
+	var networkStateDisplay = document.getElementById("networkState");
+	
+	// networkState 값에 따라 처리를 분기
+	if ( video.networkState == 2) {
+		// 다운로드 완료된 바이트 수와 전체 바이트 수를 표시
+		networkStateDisplay.innerHTML = 
+		"다운로드 중 ...[" + e.loaded + "/" + e.total + "byte]";
+	} else if ( video.networkState == 3) {
+		networkStateDisplay.innerHTML = "다운로드 완료";
+	}
+}, false);

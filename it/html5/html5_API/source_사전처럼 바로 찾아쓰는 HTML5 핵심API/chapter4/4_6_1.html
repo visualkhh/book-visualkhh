@@ -1,0 +1,34 @@
+<!DOCTYPE html> 
+<html lang="ko">  
+<head>
+
+<meta charset="UTF-8" /> 
+<title>  </title> 
+<script type="text/javascript">
+window.addEventListener("load", function() { // audio 요소를 생성
+if( ! window.Audio ) { return; }
+var audio = new Audio();
+// 재생할 수 있는 오디오 형식을 판별하여 src에 지정
+  if( audio.canPlayType('audio/mpeg') ) {
+    audio.src = "audio.mp3";
+  } else if( audio.canPlayType('audio/ogg') ) {
+    audio.src = "audio.ogg";
+  } else {
+    return;
+}
+// button 요소
+var button = document.querySelector('button'); 
+// button 요소에 click 이벤트 리스너를 지정 
+button.addEventListener("click", function() {
+// 효과음을 재생
+    audio.play();
+  }, false);
+}, false);
+</script>
+</head> 
+<body> 
+
+<p> <button>Press! </button> </p>
+
+</body> 
+</html>

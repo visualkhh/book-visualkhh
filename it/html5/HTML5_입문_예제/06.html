@@ -1,0 +1,203 @@
+
+예제 6.1
+<!-- 지정할 수 있는 범위는 2010년 4월, 단계는 2일 --> 
+date: <input type="date" min="2010-04-01" max="2010-04-30" step="2">
+
+예제 6.2
+<!-- 0부터 10까지의 짝수만을 입력할 수 있는 숫자 필드 --> 
+number: <input name="number" type="number" min="0" max="10" step="2">
+
+예제 6.3　indeterminate 속성 조작
+var checkbox = document.getElementById("check");
+// DOM 객체의 indeterminate 속성에 true 값을 지정
+checkbox.indeterminate = true;
+
+
+예제 6.4
+<!-- 1개 이상, 이미지 파일만 선택 가능한 파일 선택 폼 -->
+<input id="file" type="file" multiple accept="image/*" 
+	onchange="showFileInfo()">
+
+<script type="text/javascript">
+// 파일을 선택한 시점에 호출되는 함수
+function showFileInfo(){
+	// files 속성에 접근하여 선택한 파일의 정보를 얻음
+	var selectedFiles = document.getElementById("file").files;
+	var fileInfos = [];
+	// 선택한 복수의 파일 처리를 위한 루프
+	for(var i = 0; i < selectedFiles.length; i++){
+		var file = selectedFiles[i];
+		// File 객체의 속성에 접근하여 정보를 얻음
+		fileInfos.push("파일 이름: " + file.name + " 크기: " + file.size);
+	}
+	alert(fileInfos.join("\n"));
+}
+</script>
+
+
+예제 6.5
+<form>
+<!--	<작성> 버튼 -->
+<input type="submit" formmethod="POST"
+	formaction="/create" value="작성">
+<!-- <돌아가기> 버튼 -->
+<input type="submit" formmethod="GET"
+	formaction="/top" formnovalidate value="돌아가기">
+</form>
+
+
+
+예제 6.6
+<output	name="num">100</output>
+
+
+
+예제 6.7
+<form name="form" onsubmit="return false">
+	<input name="val1" type="number"> +
+	<input name="val2" type="number"> =
+	<!-- 입력한 값의 합계를 출력 --> 
+	<output name="out" onforminput="value = +(val1.value) + +(val2.value)"></output>
+</form>
+
+
+
+
+예제 6.8
+<form action="/key">
+	<!-- 'key'라는 파라미터 이름으로 공개키를 송신 -->
+	<keygen name="key">
+	<input type="submit" value="송신">
+</form>
+
+
+예제 6.9
+<progress value="0.8" max="1">
+
+
+
+
+
+예제 6.10
+<progress id="progressBar" max=0 value=0>
+	<!-- 아래는 progress 요소를 지원하는 브라우저를 위한 내용 -->
+	<span class="progressValue">0</span> /
+	<span class="progressMax">0</span> 完了...
+</progress>
+<script>
+function updateProgress(value, max) {
+	var p = document.getElementById("progressBar");
+	//progress 요소의 속성값을 변경
+	p.max = max, p.value = value;
+	//progress 요소 내의 표시를 변경
+	p.getElementsByClassName("progressValue")[0].textContent = value;
+	p.getElementsByClassName("progressMax")[0].textContent = max;
+}
+</script>
+
+
+예제 6.11
+var progress = document.getElementsByTagName("progress")[0];
+// 진행 상황을 백분율로 표시
+alert(Math.floor(progress.position * 100) + "% 완료되었습니다.");
+
+
+
+예제 6.12
+<meter
+	id="disk-usage"
+	title="기가바이트"
+	max="1500"
+	min="0"
+	value="460"
+	low="150"
+	high="1350">
+	<!-- meter 요소를 지원하지 않는 브라우저에서 표시할 내용 -->
+	<span class="total">1500</span>GB 중
+	<span class="used">460</span>GB 사용 중
+</meter>
+
+
+
+
+예제 6.13　form-validity.html
+<!--
+	novalidate 속성에 의해 자동으로 입력 검증을 멈추고 onsubmit 시 직접 만든 입력 검증을 수행한다.
+-->
+<form novalidate onsubmit="return customValidate()">
+성:<input type="text" name="lastName" required><br>
+이름:<input type="text" name="firstName" required><br>
+<input type="submit" value="송신">
+<script type="text/javascript">
+// 입력 값 검증
+function customValidate() {
+	var form = document.forms[0];
+	var lastName = form.lastName;
+	var firstName = form.firstName;
+	// 우선 커스텀 에러를 초기화시킴
+	lastName.setCustomValidity("") ;
+	// 기본 입력 값 검증을 통과한다면 
+	if (form.checkValidity() ) {
+		// 커스텀 입력 값 검증을 실행
+		if (lastName.value.length + firstName.value.length > 20) {
+			// 에러가 있다면 그 내용을 출력
+			lastName.setCustomValidity("성과 이름을 합쳐 20자 이내로 입력해 주십시오. ");
+			return false;
+		}
+		return true;
+	}
+	return false;
+}
+</script>
+</form>
+
+
+
+예제 6.14
+<!-- 이메일 주소 등 개인 정보와 관련된 필드는 자동 완성 기능을 꺼 놓는다. -->
+<input type="email" name="email" required autocomplete="off">
+
+
+
+예제 6.15
+좋아하는 과일:
+<input type="text" name="fruit" required list="fruits">
+<datalist id="fruits">
+	<option value="apple" label="사과">
+	<option value="orange" label="오렌지">
+	<option value="grape" label="포도">
+</datalist>
+
+
+예제 6.16 placeholder 속성의 사용 예
+성: <input type="text" name="lastName" placeholder="당신의 성"><br>
+이름: <input type="text" name="firstName" placeholder="당신의 이름">
+
+
+예제 6.17
+<input type="text" name="msg" autofocus>
+
+
+
+예제 6.18
+form.addEventListener("forminput", function() {...}, false);
+
+
+
+예제 6.19
+form.onforminput = function() {...};
+
+
+
+예제 6.20
+<!-- forminput 이벤트를 처리하여 전송 버튼의 사용 가능 여부를 제어 -->
+<form onforminput="
+		 sendButton.disabled =
+				message.value.length &lt;= 0 || message.value.length &gt; 140;">
+	140자 이내로 입력해 주십시오.<br>
+	남음:
+	<!-- forminput 이벤트를 처리하여 입력할 수 있는 남은 문자 수를 실시간으로 출력 -->
+	<output onforminput="value = (140 - message.value.length);">140</output>자<br>
+	<textarea name="message"></textarea>
+	<button name="sendButton" disabled>전송</button>
+</form>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="euc-kr"?>
+
+<?xml-stylesheet type="text/xsl" href="orderlist.xsl"?>
+
+<orderlist>
+	<order>
+		<itemlist>
+			<item>
+				<title number="9">볼트</title>
+				<detail>5mm 볼트</detail>
+			</item>
+			<item>
+				<title number="2">선풍기</title>
+				<detail>조립식 선풍기</detail>
+			</item>
+			<item>
+				<title number="1">스텝퍼</title>
+				<detail>다이어트 운동 기구</detail>
+			</item>
+		</itemlist>
+		<sender>
+			<name>김씨</name>
+			<contact>
+				<address>홍시 김구</address>
+				<phone>123-4567</phone>
+			</contact>
+		</sender>
+		<reciever>
+			<name>박가</name>
+			<contact>
+				<address>호박시 아구</address>
+				<phone>897-1052</phone>
+			</contact>
+		</reciever>
+	</order>
+</orderlist>

@@ -1,0 +1,38 @@
+<!DOCTYPE html> 
+<html lang="ko">  
+<head>
+
+<meta charset="UTF-8" /> 
+<title>유효성 검사 오류 안내</title>
+<script src="2_3_2b.js"></script>
+<style type="text/css">
+.err
+{ 
+background-color:rgba(200,100,100,1);
+}
+.ok
+{
+background-color:rgba(100,200,100,1);
+}
+</style>
+</head> 
+<body> 
+<form action="res.php" method="post" id="login"> 
+<p>
+<label>
+<span class="header">사용자명</span>
+<input type="text" name="user" required="required" pattern="[a-zA-Z0-9]{3,8}" title="사용자명:필수 항목입니다. 영문 숫자 조합으로 3~8글자로 입력해 주세요" /> 
+</label>
+</p> 
+<p>
+<label>
+<span class="header">패스워드</span>
+<input type = "password" name = "pass" required = "required" pattern="[a-zA-Z0-9]{3,8}" title="패스워드:필수 항목입니다. 영문 숫자 조합으로 3~8글자로 입력해 주세요" /> </label>
+</p>
+<p><input type="submit" value="로그인" /></p> 
+</form>
+
+
+
+</body> 
+</html>

@@ -1,0 +1,359 @@
+
+
+
+
+예제 13.1
+var db = openDatabase("mail_db", "1", "이메일 애플리케이션용 DB", 1024 * 1024);
+
+
+
+예제 13.2
+var db;
+openDatabase("mail_db", "1", "이메일 애플리케이션용 DB", 1024 * 1024, 
+	function(database){
+		db = database;
+	});
+
+예제 13.3
+var db = openDatabase( . . . );
+db.transaction(function(tx){
+	// 인수 tx를 사용하여 SQL을 실행
+	. . . 
+});
+
+
+
+예제 13.4
+var db = openDatabase( . . . );
+db.transaction(
+function(tx){
+// 인수 tx를 사용하여 SQL 실행
+. . .
+},
+function(error){
+// 에러 처리 수행
+. . .
+},
+function(){
+// 트랜잭션 성공 시의 처리 수행
+. . .
+});
+
+
+
+예제 13.5
+tx.executeSql("create table People(name, age integer)");
+　
+
+
+
+
+
+예제 13.6
+tx.executeSql("insert into People values(?, ?)", ["시라이시", 31]);
+
+
+
+예제 13.7
+// name은 사용자의 입력 값이라 가정
+var name = document.getElementById("name").value;
+// 아래의 코드는 X
+tx.executeSql("update People set name = '" + name + "'");
+// 아래의 코드는 O
+tx.executeSql("update People set name = ?", [name]);
+
+
+
+
+예제 13.8
+tx.executeSql("select * from People", [],
+function(tx, rs) {
+	// SQL 실행에 성공했을 때의 처리
+	...
+},
+function(error) {
+	// SQL 실행에 실패했을 때의 처리
+	...
+});
+
+
+
+예제 13.9
+// 데이터베이스 열기
+var db = openDatabase( "mail_db", "1", "이메일 애플리케이션용 DB", 1024 * 1024);
+// 트랜잭션 실행
+db.transaction(
+	function(tx) {
+		// 트랜잭션 내 처리
+		// SQL 실행
+		tx.executeSql("insert into People values (?, ?)", [name, age]);
+		tx.executeSql("select * from People", [],
+			function(tx, rs) {
+				// SQL 실행에 성공했을 때의 처리
+				...
+			});
+	},
+	function(error) {
+		// 트랜잭션에 실패했을 때의 처리
+	});
+
+
+
+예제 13.10
+// 세 번째 인수에 지정한 콜백 함수로 처리 결과를 얻을 수 있음
+tx.executeSql("select * from Employee", [],
+	// 첫 번째 인수는 트랜잭션, 두 번째 인수는 SQLResultSet
+	function(tx, rs) {
+	});
+
+
+
+
+예제 13.11
+var db = openDatabase(...);
+db.transaction(function(tx) {
+	// 검색 실행
+	tx.executeSql("select name, age from People", [],
+		// 검색 결과 처리
+		function(tx, rs) {
+			// 결과 행 세트 루프 처리
+			for (var i = 0; i < rs.rows.length; i++) {
+				// 인덱스를 지정하여 행 객체를 얻음
+				var row = rs.rows[i];
+				// 행 객체는 보통의 JavaScript 객체
+				var rowHTML =
+				"<tr><td>" + row.name + "</td><td>" + row.age + "</td></tr>"
+			}
+			table.innerHTML += rowHTML;
+		});
+});
+
+
+예제 13.12
+// employee_id 열은 자동으로 번호가 매겨지는 기본 키
+tx.executeSql("create table Employee (" +
+	" employee_id integer primary key autoincrement ," +
+	" name, age integer)");
+
+
+
+예제 13.13
+// INSERT 문을 실행. 자동으로 번호가 매겨지는 기본 키에는 값을 넣지 않음
+tx.executeSql(
+	"insert into Employee (name, age) values (?, ?)", ["白石", 31],
+	function(tx, rs) {
+		// 처리 결과로부터 자동으로 매겨진 ID 값을 얻음
+		alert("ID[" + rs.insertId + "]번의 레코드가 생성되었습니다.");
+	});
+
+
+
+예제 13.14
+//DELETE 문 실행
+tx.executeSql(
+	"delete from Employee", []
+	function(tx, rs) {
+		// 처리 결과로부터 삭제된 레코드 수를 얻음
+		alert( rs.rowsAffected + "건의 레코드가 삭제되었습니다.");
+	});
+
+
+
+예제 13.15
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script type="text/javascript">
+// 데이터베이스 열기
+var db = openDatabase( "EmployeeDB", "", "Employee Database", 1024*1024);
+// 테이블 생성
+db.transaction( function(tx) {
+	// if not exists 구문을 이용하여 없을 때만 테이블을 생성
+	// employee_id는 자동으로 번호가 매겨지는 기본 키
+	tx.executeSql( "create table if not exists Employee (" +
+		" employee_id integer primary key autoincrement," +
+		" name, age integer)");
+});
+function load() {
+	// SELECT 문 실행
+	db.transaction( function(tx) {
+		tx.executeSql( "select * from Employee", [], function(tx, rs) {
+			var list = document.getElementById("list");
+			list.innerHTML = "";
+			var rows = rs.rows;
+			// Employee 테이블에 저장된 모든 값을 표시
+			for (var i = 0; i < rows.length; i++) {
+				var row = rows.item(i);
+				var option = new Option(
+				row.employee_id + "\t" + row.name + "\t(" + row.age + "세)",
+					row.employee_id);
+				list.options[list.options.length] = option
+			}
+		});
+	});
+}
+function add() {
+	var name = document.getElementById("name").value;
+	var age = document.getElementById("age").value;
+	// Employee 테이블에 값을 저장
+	db.transaction( function(tx) {
+		tx.executeSql( "insert into Employee (name, age) values (?, ?)",
+			[name, age],
+			function(tx, rs) {
+			alert("사원 ID[" + rs.insertId + "] 레코드가 저장되었습니다.");
+				load();
+			});
+	});
+}
+function remove() {
+	var list = document.getElementById("list");
+	if (list.selectedIndex < 0) {
+		return;
+	}
+	var selected = list.options[list.selectedIndex].value;
+	// 선택한 항목을 DELETE 문으로 삭제
+	db.transaction( function(tx) {
+		tx.executeSql( "delete from Employee where employee_id = ?", 
+[selected], function() {
+			load();
+		});
+	});
+}
+</script>
+</head>
+<body onload="load()">
+<h1>사원 관리 화면</h1>
+이름: <input type="text" id="name">
+나이: <input type="number" id="age">
+<button onclick="add()">추가</button>
+<hr>
+<select id="list" size="5" style="width: 300px"></select>
+<button onclick="remove()">삭제</button><br>
+</body>
+</html>
+
+
+
+
+예제 13.16
+var db = openDatabase("EmployeeDB", "1", "Employee Database", 1024 * 1024);
+
+
+
+예제 13.17
+var db = openDatabase("EmployeeDB", "", "Employee Database", 1024 * 1024);
+
+
+예제 13.18
+db.changeVersion("", "1.0");
+
+
+예제 13.19
+db.changeVersion("", "1", function(tx){
+	//tx.executeSql("create table Employee(name, age integer)");
+});
+　 
+
+
+
+예제 13.20
+db.changeVersion("1", "2",
+	function(tx) {
+		tx.executeSql("alter table Employee add column gender integer");
+	},
+	function(error) {
+		// 에러일 때의 처리
+	},
+	function() {
+		// 성공일 때의 처리
+	});
+
+
+
+예제 13.21
+// 데이터베이스 열기
+var db = openDatabase("employee", "", "Employee", 1024*1024);
+function upgradeDB() {
+	// 데이터베이스 스키마를 구축하는 SQL
+	var upgradeStmts = [
+		// 버전 1용 스키마 정의문
+		"create table Employee (" +
+			" employee_id integer primary key autoincrement," +
+			" name, age integer)",
+		// 버전 2용 스키마 정의문
+		"alter table Employee add column gender integer",
+		// 버전 3용 스키마 정의문
+		"alter table Employee add column salary integer"
+	];
+	// 최신 버전
+	var latestVersion = upgradeStmts.length;
+	// 데이터베이스 현재 버전
+	var currentVersion = db.version || 0;
+	// 데이터베이스가 이전 버전이라면
+	if (currentVersion < latestVersion) {
+		// 데이터베이스 버전을 변경
+		db.changeVersion(db.version, String(latestVersion), function(tx) {
+			// 버전 간 차이만큼의 SQL만을 실행
+			for (var i = currentVersion; i < latestVersion; i++) {
+				tx.executeSql(upgradeStmts[i], []);
+			}
+		}, null, null);
+	}
+}
+// 데이터베이스 업그레이드 실행
+upgradeDB();
+
+
+
+
+예제 13.22
+var db = openDatabaseSync("mail_db", "1", "이메일 애플리케이션용 DB", 1024 * 1024);
+
+
+예제 13.23
+db.transaction(function(tx) {
+	// 트랜잭션 안에서 실행되는 코드
+});
+
+
+예제 13.24
+// 워커 내부라면 openDatabaseSync()를 호출
+var db = openDatabaseSync ("mail_db", "1", "이메일 애플리케이션용 DB", 1024 * 1024);
+// 트랜잭션 시작
+db.transaction (function(tx) {
+	// 검색 결과를 반환 값으로 얻음
+	var results = tx.executeSql ("select * from Mail where limit ? offset ?", [20, 1]);
+	// 결과 객체의 내용은 비동기 API 때와 같음
+	for (var i = 0; i < results.rows.length; i++) {
+		var row = results.rows[i];
+		...
+	}
+});
+
+
+
+
+예제 13.25
+var db = openDatabase(...);
+db.transaction(
+	function(tx) {
+		// 트랜잭션 안에서 실행할 처리
+	},
+	function(error) {
+		// 에러 처리
+		alert("エラ?:" + error.code + ":" + error.message);
+	});
+
+
+
+예제 13.26
+var db = openDatabase(...);
+try {
+	db.transaction(function(tx) {
+		// 트랜잭션 안에서 실행할 처리
+	});
+} catch (error) {
+	// 에러 처리
+	alert("エラ?:" + error.code + ":" + error.message);
+}

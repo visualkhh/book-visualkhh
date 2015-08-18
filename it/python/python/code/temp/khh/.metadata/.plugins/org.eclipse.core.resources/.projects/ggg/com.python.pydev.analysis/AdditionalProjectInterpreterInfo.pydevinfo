@@ -1,0 +1,45 @@
+-- VERSION_4
+-- START DISKCACHE
+D:\code\python\khh\.metadata\.plugins\org.eclipse.core.resources\.projects\ggg\com.python.pydev.analysis\v2_indexcache
+GG|1427690865815|D:\code\python\khh\ggg\GG.py
+LL|1427691532224|D:\code\python\khh\ggg\LL.py
+Test|1427690772114|D:\code\python\khh\ggg\Test.py
+CClient|1427691349844|D:\code\python\khh\ggg\CClient.py
+CServer|1427691260486|D:\code\python\khh\ggg\CServer.py
+Key|1427691759831|D:\code\python\khh\ggg\Key.py
+-- END DISKCACHE
+-- START DICTIONARY
+6
+4=GG
+5=LL
+1=Test
+2=CClient
+3=CServer
+6=Key
+-- END DICTIONARY
+-- START TREE 1
+20
+add|1|addToClipBoard!10@
+buf|0|
+cli|0|
+con|0|
+dat|3|data!19@data!27@data!35@
+err|0|
+hoo|0|
+hos|2|HOST!19@HOST!27@
+hsh|0|
+mai|1|main!42@
+mes|1|MessageBox!51@
+my_|0|
+pol|1|poll_clipboard!42@
+por|2|PORT!19@PORT!27@
+rea|0|
+s|2|s!19@s!27@
+ser|0|
+spy|1|spyManager!51@
+wm_|0|
+wri|0|
+-- END TREE
+-- START TREE 2
+0
+-- END TREE

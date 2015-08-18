@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<businessDetail generic="2.0" xmlns="urn:uddi-org:api_v2"
+                      operator="www.ibm.com/services/uddi" truncated="false">
+	<businessEntity businessKey="27C505C0-164C-11DA-B2FE-000629DC0A53"
+                operator="www.ibm.com/services/uddi" authorizedName="060000AKQF">
+		<discoveryURLs>
+			<discoveryURL useType="businessEntity">
+				http://uddi.ibm.com/testregistry/uddiget?businessKey=27C505C0-164C-11DA-B2FE-000629DC0A53
+			</discoveryURL> 
+		</discoveryURLs>
+		<name xml:lang="ko">MyungJin Company</name> 
+		<description xml:lang="ko">My Company</description> 
+		<contacts>
+			<contact>
+				<description xml:lang="en" /> 
+				<personName>Lee Myung Jin</personName> 
+				<phone useType="">(800) 964-3304</phone> 
+				<email>lmj@addinteger.com</email> 
+			</contact>
+		</contacts>
+		<businessServices>
+			<businessService serviceKey="EEDE1BB0-164C-11DA-B2FE-000629DC0A53"
+                                businessKey="27C505C0-164C-11DA-B2FE-000629DC0A53">
+				<name xml:lang="ko">My Hello Service</name> 
+				<description xml:lang="ko">My Hello Service</description>
+				<bindingTemplates>
+					<bindingTemplate bindingKey="EEF30340-164C-11DA-B2FE-000629DC0A53"
+                                     serviceKey="EEDE1BB0-164C-11DA-B2FE-000629DC0A53">
+						<description xml:lang="en">
+							My Service Binding Description
+						</description> 
+						<accessPoint URLType="http">
+							http://localhost:8080/hello-jaxrpc/hello
+						</accessPoint> 
+						<tModelInstanceDetails>
+							<tModelInstanceInfo
+                             tModelKey="UUID:68DE9E80-AD09-469D-8A37-088422BFBC36" /> 
+						</tModelInstanceDetails>
+					</bindingTemplate>
+				</bindingTemplates>
+				<categoryBag>
+					<keyedReference
+                          tModelKey="UUID:1FF729F2-1948-46CF-B660-31EC107F1663"
+                          keyName="Professional, Scientific, and Technical Services"
+                          keyValue="54" /> 
+				</categoryBag>
+			</businessService>
+		</businessServices>
+	</businessEntity>
+</businessDetail>

@@ -1,0 +1,84 @@
+<!DOCTYPE html> 
+<html lang="ko">  
+<head>
+<style type="text/css">
+
+#player {
+  padding: 0;
+  width: 480px;
+  font-family: Arial;
+  font-size: 12px;
+  color: #fff;
+  text-align: left;
+  /* 둥근모서리 */
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  /* 그라데이션 */
+  background: #666666;
+  background: linear-gradient(top, #bbb, #444 20%, #555 80%, #222);
+  background: -moz-linear-gradient(top, #bbb, #444 20%, #555 80%, #222);
+  background: -webkit-gradient(linear, left top, left bottom,
+    color-stop(0, #bbb), color-stop(20%, #333),
+    color-stop(80%, #555), color-stop(100%, #222)
+  );
+}
+#player button {
+  margin: 5px;
+  font-size: 12px;
+  text-align: center;
+  width: 30px;
+  color: #fff;
+  border: 1px solid #000;
+  text-shadow: #000 1px 1px 1px;
+  font-family: Arial;
+  vertical-align: middle;
+  /* 둥근 모서리 */
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  /* 그라데이션 */
+  background: #666666;
+  background: linear-gradient(top, #bbb, #444 20%, #555 80%, #222);
+background: -moz-linear-gradient(top, #bbb, #444 20%, #555 80%, #222);
+background: -webkit-gradient(linear, left top, left bottom,
+    color-stop(0, #bbb), color-stop(20%, #333),
+    color-stop(80%, #555), color-stop(100%, #222)
+  );
+}
+#player canvas {
+  border-top: 1px solid #000;
+  border-right: 1px solid #999;
+  border-bottom: 1px solid #999;
+  border-left: 1px solid #000;
+  vertical-align: middle;
+}
+#player span {
+  display: inline-block;
+  vertical-align: middle;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+
+</style>
+
+
+<meta charset="UTF-8" /> 
+<title>  </title> 
+ <script src="4_19_1.js"></script>
+</head> 
+<body> 
+
+<div id="player">
+  <audio>
+    <source src="audio.mp3" type="audio/mpeg" />
+    <source src="audio.ogg" type="audio/ogg" />
+  </audio>
+  <button title="재생 " class="pl">&#x25ba;</button>
+  <button title="리셋" class="rt">&#x21bb;</button>
+  <canvas width="200" height="15"></canvas>
+  <span title="상태" class="st">준비중 </span>
+</div>
+
+
+</body> 
+</html>

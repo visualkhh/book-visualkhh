@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration xmlns="http://java.sun.com/xml/ns/jax-rpc/ri/config">
+	<service name="HelloService" targetNamespace="http://localhost:8080"
+               typeNamespace="http://localhost:8080" packageName="helloservice">
+		<interface name="helloservice.HelloIF"/>
+	</service>
+</configuration>

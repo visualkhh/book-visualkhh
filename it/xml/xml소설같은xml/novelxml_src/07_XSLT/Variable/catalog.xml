@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml-stylesheet type="text/xsl" href="catalog.xsl"?>
+
+<Catalog>
+   <Book id="1861003323">
+      <Price>49.99</Price>
+   </Book>
+   <Book id="1861003129">
+      <Price>34.99</Price>
+   </Book>
+   <Book id="1861003451">
+      <Price>23.99</Price>
+   </Book>
+</Catalog>

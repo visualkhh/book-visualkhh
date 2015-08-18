@@ -1,0 +1,25 @@
+<!DOCTYPE html> 
+<html lang="ko">  
+<head>
+
+<meta charset="UTF-8" /> 
+<title>  </title> 
+<script type="text/javascript">
+window.addEventListener("load", function() { // audio 요소를 생성
+var audio = new Audio("audio.ogg");
+// button 요소
+var button = document.querySelector('button'); 
+// button 요소에 click 이벤트 리스너를 지정 
+button.addEventListener("click", function() {
+// 효과음을 재생
+    audio.play();
+  }, false);
+}, false);
+</script>
+</head> 
+<body> 
+
+<p> <button>Press! </button> </p>
+
+</body> 
+</html>

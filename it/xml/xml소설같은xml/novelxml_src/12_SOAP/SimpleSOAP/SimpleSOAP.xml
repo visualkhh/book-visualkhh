@@ -1,0 +1,20 @@
+<env:Envelope xmlns:env="http://schemas.xmlsoap.org/soap/envelope/">
+	<env:Header>
+		<m:reservation xmlns:m="http://travelcompany.example.org/reservation"
+                     env:actor="http://www.w3.org/2003/05/soap-envelope/role/next"
+                     env:mustUnderstand="1">
+			<m:dateAndTime>2001-11-29T13:20:00.000-05:00</m:dateAndTime>
+		</m:reservation>
+	</env:Header>
+	<env:Body>
+		<ns0:sayHello>
+			<String_1 xsi:type="xsd:string">Duke!</String_1>
+		</ns0:sayHello>
+	</env:Body>
+</env:Envelope>
+
+Content-Type: image/gif
+Content-Id: Office_LogoGIF89
+????#??????64+3+n???K??Y???l?
+	... Attachment ...
+?????????P??????_???n(%??t|d

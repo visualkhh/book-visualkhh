@@ -1,0 +1,32 @@
+﻿<html lang="ko"> 
+<head> 
+<meta charset="UTF-8" /> 
+<title>element.insertAdjacentHTML()의 예제</title> 
+<link rel="stylesheet" href="style.css" type="text/css" /> 
+<script> 
+window.onload = function() { 
+  var text = "<b>[삽입 텍스트]</b>"; 
+  var p1 = document.getElementById("p1"); 
+  p1.insertAdjacentHTML("beforebegin", text); 
+  var p2 = document.getElementById("p2"); 
+  p2.insertAdjacentHTML("afterbegin", text);   var p3 = document.getElementById("p3"); 
+  p3.insertAdjacentHTML("beforeend", text); 
+  var p4 = document.getElementById("p4"); 
+  p4.insertAdjacentHTML("afterend", text); 
+}; 
+</script> 
+</head> 
+<body> 
+ 
+<h1>element.insertAdjacentHTML()의 예제</h1> 
+<h2>beforebegin</h2> 
+<p id="p1">원래 텍스트.</p> 
+<h2>afterbegin</h2> 
+<p id="p2"> 원래 텍스트 </p> 
+<h2>beforeend</h2> 
+<p id="p3"> 원래 텍스트 </p> 
+<h2>afterend</h2> 
+<p id="p4"> 원래 텍스트 </p> 
+ 
+</body> 
+</html>

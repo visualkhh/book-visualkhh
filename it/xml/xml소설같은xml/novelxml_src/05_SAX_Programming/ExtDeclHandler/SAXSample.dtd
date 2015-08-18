@@ -1,0 +1,17 @@
+<!ELEMENT	booklist	(book+)>
+<!ELEMENT	book		(name, authors, page, publish?, price)>
+<!ELEMENT	name		(#PCDATA)>
+<!ELEMENT	authors		(author+)>
+<!ELEMENT	author		(#PCDATA)>
+<!ELEMENT	page		(#PCDATA)>
+<!ELEMENT	publish		EMPTY>
+<!ELEMENT	price		(#PCDATA)>
+	
+<!ATTLIST	book		isbn	ID	#REQUIRED>
+<!ATTLIST	name		outpage	CDATA	#IMPLIED>
+<!ATTLIST	publish		year	CDATA	#IMPLIED
+				month	CDATA	#IMPLIED
+				day	CDATA	#IMPLIED>
+<!ATTLIST	price		unit	CDATA	"won">
+
+<!ENTITY	bookname	"XML°ú XML Web Services">

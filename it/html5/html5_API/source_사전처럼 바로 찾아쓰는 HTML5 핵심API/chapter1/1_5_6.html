@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html> 
+<html lang="ko"> 
+<head> 
+<meta charset="UTF-8" /> 
+<title>element.innerHTML 예제（보안상의 실수를 범한 코드）</title> 
+<link rel="stylesheet" href="style.css" type="text/css" /> 
+<script> 
+function set() { 
+  var input = document.getElementById("input"); 
+  var nickname = document.getElementById("nickname"); 
+  nickname.innerHTML = input.value; 
+} 
+</script> 
+</head> 
+<body> 
+ 
+<h1>element.innerHTML 예제（ 보안상의 실수를 범한 코드）</h1> 
+<p> 
+  <label>닉네임을 입력해 주세요：<input type="text" id="input" /></label> 
+  <input type="button" value="지정" onclick="set()" /> 
+</p> 
+<p>어서오세요 <b id="nickname">게스트</b>님</p> 
+</body> 
+</html> 

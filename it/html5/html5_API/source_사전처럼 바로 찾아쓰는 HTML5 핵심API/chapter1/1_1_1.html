@@ -1,0 +1,50 @@
+<!DOCTYPE html> 
+<html lang="ko">  
+<head> 
+<meta charset="UTF-8" /> 
+<title>DOM 트리</title> 
+<script type="text/javascript">
+﻿//addEventListener() 함수가 구현되어 있지 않다면 종료
+if( !window.addEventListener ) { return; } 
+//window 오브젝트에 load 이벤트의 리스너를 지정
+window.addEventListener("load", function() { 
+  // img 요소의 HTMLCollection 오브젝트 
+  var imgs = document.images; 
+  // for문 안에서 img요소를 처리
+  for( var i=0; i<imgs.length; i++ ) { 
+    var img = imgs.item(i); 
+    // 부모 요소가 a요소가 아니라면 무시 
+    var parent = img.parentNode; 
+    if( img.parentNode.nodeName != "A" ) { continue; } 
+    // mouseover 이벤트의 핸들러를 지정
+    img.onmouseover = function(event) { 
+      this.className = "mouseover"; 
+    } 
+    // mouseout 이벤트의 핸들러를 지정
+    img.onmouseout = function() { 
+      this.className = ""; 
+    } 
+  } 
+}, false);
+
+
+
+</script>
+﻿<style> 
+img.mouseover { 
+opacity: 0.7; 
+}
+
+</style> 
+</head> 
+<body> 
+﻿<p> 
+  <a href="#"><img src="ie.png" alt="Internet Explorer" /></a> 
+  <a href="#"><img src="firefox.png" alt="Firefox" /></a> 
+  <a href="#"><img src="opera.png" alt="Opera" /></a> 
+  <a href="#"><img src="safari.png" alt="Safari" /></a> 
+  <a href="#"><img src="chrome.png" alt="Chrome" /></a> 
+</p>
+
+</body> 
+</html>

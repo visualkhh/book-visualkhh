@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="euc-kr"?>
+<?xml-stylesheet type="text/xsl" href="orderlist.xsl"?>
+
+<order>
+	<productlist>
+		<product>
+			<title number="9">볼트</title>
+		</product>
+		<product>
+			<title number="2">선풍기</title>
+		</product>
+		<product>
+			<title number="1">스텝퍼</title>
+		</product>
+	</productlist>
+</order>

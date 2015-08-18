@@ -1,0 +1,9 @@
+<?xml version="1.0"
+            encoding="euc-kr"
+            standalone="yes"?>
+
+<Computer>
+	<CPU>Pantium 2.0</CPU>
+	<Memory>512 MB</Memory>
+	<GraphicCard>Radeon 9200</GraphicCard>
+</Computer>

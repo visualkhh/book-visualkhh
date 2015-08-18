@@ -1,0 +1,116 @@
+예제 2.1
+<!DOCTYPE html>
+
+예제 2.2
+<!DOCTYPE HTML SYSTEM "about:legacy-compat"> 
+
+예제 2.3
+<meta charset="UTF-8">
+
+예제 2.4
+<meta http-equiv="Content-Type" content= "text/html; charset=UTF-8">
+
+예제 2.5
+<!-- meta 요소는 종료 태그가 필요없음 -->
+<meta charset="UTF-8"></meta>
+
+예제 2.6
+<meta charset="UTF-8"/>
+
+예제 2.7
+<ul>
+<li> 다음에도 li이므로 종료 태그 생략
+<li> 새로운 요소의 끝이므로 종료 태그 생략
+</ul>
+
+예제 2.8
+<!-- tbody 요소가 생략됨 -->
+<table>
+	<tr><th>제목 1<th>제목 2
+	<tr><td>1-1<td>1-2
+</table>
+
+예제 2.9
+<!-- tbody 요소가 생략됨 -->
+<table>
+	<tbody>
+		<tr><th>제목 1<th>제목 2
+		<tr><td>1-1<td>1-2
+	</tbody>
+</table>
+
+예제 2.10
+<input id=age type=number disabled>
+<input id=age type=number disabled="">
+<input id=age type=number disabled="disabled">
+
+예제 2.11
+<!DOCTYPE html>
+<HTML>
+	<HEAD>
+		<title>마크업 예제 1</title>
+		<!-- charset 속성을 이용하여 문자 인코딩을 선언 -->
+		<meta charset="UTF-8">
+		<style type="text/css">h1 { font-size: 2em; }</style>
+	</HEAD>
+	<BODY>
+		<h1>HTML 마크업 예제</h1>
+		<p>단락 1</p>
+		<input type="text" disabled>
+	</BODY>
+</HTML>
+
+예제 2.12
+<!DOCTYPE html>
+<title>마크업 예제 1</title>
+<meta charset=UTF-8>
+<style>h1 { font-size: 2em; }</style>
+<h1>HTML 마크업 예제</h1>
+<p>단락 1
+<input disabled>
+
+예제 2.13
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>마크업 예제 </title>
+		<style type="text/css">h1 { font-size: 2em; }</style>
+	</head>
+	<body>
+		<h1>HTML 마크업 예제</h1>
+		<p>단락 1</p>
+			<input type="text" disabled="disabled"/>
+	</body>
+</html>
+
+예제 2.14
+address, article, aside, figure, footer,
+header, hgroup, menu, nav, section {
+	display: block;
+}
+
+예제 2.15
+[hidden], command, datalist,
+menu[type=context], rp, source {
+	display: none;
+}
+
+예제 2.16
+<!--[if IE]>
+document.createElement("article");
+document.createElement("section");
+document.createElement("aside");
+...
+<![endif]-->
+
+예제 2.17
+<!--[if IE]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+예제 2.18
+if (Modernizr.localstorage){
+	// 로컬 스토리지를 사용할 수 있을 때의 처리
+} else {
+	// 사용할 수 없을 때의 처리
+}

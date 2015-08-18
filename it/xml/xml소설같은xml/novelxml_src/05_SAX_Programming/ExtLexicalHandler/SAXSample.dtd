@@ -1,0 +1,5 @@
+<!ELEMENT	booklist	(book+)>
+<!ELEMENT	book		(name, page)>
+<!ELEMENT	name		(#PCDATA)>
+<!ELEMENT	page		(#PCDATA)>
+<!ENTITY	bookname	"XML°ú XML Web Services">

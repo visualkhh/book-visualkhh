@@ -1,0 +1,47 @@
+<!DOCTYPE html> 
+<html lang="ko">  
+<head>
+
+
+<script src="5_5_1.js"></script> 
+<style >
+menu {padding: 10px; margin: 10px;}
+menu li { float:left; display:block; width:45px; list-style-type:none;}
+menu li button  { width:25px; height:25px; padding:0px; margin:0px; }
+menu li button img { width:25px; height:25px; padding:0px; margin:0px; }
+div.wisywig { width:604px; background-color:gray; padding:20px;}
+div.wisywig ifrmae { margin:0 auto; background-color:white;}
+div.wisywig textarea { display:none;}
+</style>
+<meta charset="UTF-8" /> 
+<title>텍스트 편집</title>
+
+</head> 
+<body> 
+<form action="#">
+  <div class="wisywig">
+    <menu>
+     	<li><button type="button" data-command="insertHTML" data-value="red"  title="빨강 "><img src="red.png" alt="빨강 " /></button></li>
+      	<li><button type="button" data-command="insertHTML" data-value="blue"  title="파랑 "><img src="blue.png" alt="파랑 " /></button></li>
+      	<li><button type="button" data-command="bold" title="볼드체 "><img src="b.png" alt="볼드체 " /></button></li>
+      	<li><button type="button" data-command="italic" title="이탤릭체 "><img src="i.png" alt="이탤릭체 " /></button></li>
+      	<li><button type="button" data-command="subscript" title="아래첨자 "><img src="sub.png" alt="아래첨자 " /></button></li>
+      	<li><button type="button" data-command="superscript" title="위첨자 "><img src="sup.png" alt="위첨자 " /></button></li>
+      	<li><button type="button" data-command="insertOrderedList" title="단락번호 "><img src="ol.png" alt="단락번호" /></button></li>
+      	<li><button type="button" data-command="insertUnorderedList" title="목록 "><img src="ul.png" alt="목록 " /></button></li>
+      	<li><button type="button" data-command="createLink" title="링크 생성"><img src="link.png" alt="링크 생성 " /></button></li>
+      	<li><button type="button" data-command="unlink" title="링크 해제 "><img src="unlink.png" alt="링크 해제 " /></button></li>
+	    <li><button type="button" data-command="undo" title="실행 취소 ">&#x25c4;</button></li>
+      	<li><button type="button" data-command="redo" title="다시 실행 ">&#x25ba;</button></li>
+    </menu>
+    
+    <textarea name="t" rows="3" cols="60"></textarea>
+    <iframe src="edit.html" width="600px" height="200px"></iframe>
+  </div>
+  <p><input type="submit" value="전송 " />
+</form>
+</body> 
+</html>
+
+
+￼

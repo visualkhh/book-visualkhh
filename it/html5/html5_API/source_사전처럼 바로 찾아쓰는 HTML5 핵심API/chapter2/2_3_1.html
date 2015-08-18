@@ -1,0 +1,35 @@
+<!DOCTYPE html> 
+<html lang="ko">  
+<head>
+
+<meta charset="UTF-8" /> 
+<title>유효성 검사 API</title>
+<script src="2_3_1.js"></script> 
+</head> 
+<body> 
+<form action="res.php" method="post" id="qform"> 
+<fieldset id="question1" class="question">
+<legend>질문 1</legend> 
+<p>좋아하는 단어를 입력해 주세요</p> <p>
+<input type="text" id="q1" name="q1" required="required" />
+<input type="button" data-qnum="1" value="다음" /> </p>
+</fieldset>
+<fieldset id="question2" class="question">
+<legend>질문 2</legend> <p>싫어하는 단어를 입력해 주세요</p> <p>
+<input type="text" id="q2" name="q2" required="required" />
+<input type="button" data-qnum="2" value="다음" /> </p>
+</fieldset>
+<fieldset id="question3" class="question">
+<legend>질문 3</legend> <p>닉네임을 입력해 주세요</p> <p>
+<input type="text" id="q3" name="q3" required="required" />
+<input type="button" data-qnum="3" value="다음" /> </p>
+</fieldset>
+<fieldset id="question4" class="question">
+<legend>종료</legend>
+<p>질문에 응해주셔서 감사합니다. 전송 버튼을 눌러 주세요. </p> <p><input type="submit" value="전송" /></p>
+</fieldset> 
+</form>
+
+
+</body> 
+</html>

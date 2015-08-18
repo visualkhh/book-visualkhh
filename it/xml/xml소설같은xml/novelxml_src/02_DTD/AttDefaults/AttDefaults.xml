@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="euc-kr"?>
+
+<!DOCTYPE BookList [
+<!ELEMENT BookList (Book+)>
+<!ELEMENT Book (Title, Author*, Price, (PubDate | Date)?)>
+<!ATTLIST Book ISBN ID #REQUIRED>
+<!ELEMENT Title (#PCDATA)>
+<!ELEMENT Author (#PCDATA)>
+<!ELEMENT Price (#PCDATA)>
+<!ATTLIST Price unit (원 | 달러 | 엔) "원">
+<!ELEMENT PubDate EMPTY>
+<!ATTLIST PubDate year CDATA #FIXED "2005"
+                        month CDATA #IMPLIED>
+<!ELEMENT Date EMPTY>
+]>
+
+<BookList>
+	<Book ISBN="X134-9821235">
+		<Title>XML 프로그래밍</Title>
+		<Author>아무게</Author>
+		<Price>23.4</Price>
+		<PubDate year="2005" month="05"/>
+	</Book>
+	<Book>
+		<Title>XML 프로그래밍</Title>
+		<Price unit="달러">23.4</Price>
+		<PubDate year="2001" month="05"/>
+	</Book>
+</BookList>

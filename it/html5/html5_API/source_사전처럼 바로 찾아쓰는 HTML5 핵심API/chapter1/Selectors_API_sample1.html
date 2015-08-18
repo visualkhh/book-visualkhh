@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html> 
+<html lang="ko"> 
+<head> 
+<meta charset="UTF-8" /> 
+<title>Selectors API 의 예제1</title> 
+<link rel="stylesheet" href="style.css" type="text/css" /> 
+<style> 
+#gnav>ul>li>a.show { 
+  font-weight: bold; 
+} 
+</style> 
+<script> 
+(function () {
+ 
+// addEventListener() 함수가 동작하지 않으면 종료 
+if( ! window.addEventListener ) { return; } 
+// querySelector() 함수가 동작하지 않으면 종료
+if( ! document.querySelector ) { return; } 
+ 
+// window 오브젝트에 load 이벤트 리스너를 지정 
+window.addEventListener("load", function() { 
+  // 이 페이지의 URL 
+  var url = document.URL; 
+  // 이 페이지의 파일명 
+  var m = document.URL.match(/\/([a-zA-Z0-9\.\-\_]+)[^\/]*$/); 
+  var fname = m ? m[1] : null; 
+  if( ! fname ) { return; } 
+  // nav 요소에서 이 페이지의a 요소를 추출 
+  var a = document.querySelector('#gnav>ul>li>a[href$="/' + fname + '"]'); 
+  if( ! a ) { return; } 
+  // 해당 a 요소의 href 속성을 제거 
+  a.removeAttribute("href"); 
+  // 해당 a 요소의 class 속성에 키워드를 추가 
+  class_add(a, "show"); 
+}, false); 
+ 
+// 요소의 class 속성에 키워드 추가 
+function class_add(element, word) { 
+  if(element.classList) { 
+    // classList 속성이 구현되어 있는 경우
+    element.classList.add(word); 
+  }
+ else
+ {     // classList 속성이 구현되지 않은 경우 
+    var w = word.replace(/([^a-zA-Z0-9])/, "\\$1", "g"); 
+    var re = new RegExp("(^|\\s)" + w + "(\\s|$)"); 
+    if( ! re.test(element.className) ) { 
+      element.className += " " + word; 
+ } 
+  } 
+} 
+ 
+})(); 
+</script> 
+</head> 
+<body> 
+ 
+<h1>Selectors API 의 예제 1</h1> 
+ 
+<nav id="gnav"> 
+  <ul> 
+    <li><a href="./Selectors_API_sample1.html">예제1</a></li> 
+    <li><a href="./Selectors_API_sample2.html">예제2</a></li> 
+    <li><a href="./Selectors_API_sample3.html">예제3</a></li> 
+  </ul> 
+</nav> 
+ 
+</body> 
+</html> 

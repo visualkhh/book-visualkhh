@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="euc-kr"?>
+<?xml-stylesheet type="text/xsl" href="orderlist.xsl"?>
+
+<order>
+	<productlist>
+		<product>
+			<title number="9">볼트</title>
+		</product>
+	</productlist>
+	<sender>
+		<name>이명진</name>
+	</sender>
+	<receiver>
+		<name>최영관</name>
+	</receiver>
+</order>

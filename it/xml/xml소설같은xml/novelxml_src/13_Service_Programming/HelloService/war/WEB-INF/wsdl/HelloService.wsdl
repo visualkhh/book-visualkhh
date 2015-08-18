@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<definitions name="HelloService" targetNamespace="http://localhost:8080" xmlns:tns="http://localhost:8080" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+	<types/>
+	<message name="HelloIF_sayHello">
+		<part name="String_1" type="xsd:string"/>
+	</message>
+	<message name="HelloIF_sayHelloResponse">
+		<part name="result" type="xsd:string"/>
+	</message>
+	<portType name="HelloIF">
+		<operation name="sayHello" parameterOrder="String_1">
+			<input message="tns:HelloIF_sayHello"/>
+			<output message="tns:HelloIF_sayHelloResponse"/>
+		</operation>
+	</portType>
+	<binding name="HelloIFBinding" type="tns:HelloIF">
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc"/>
+		<operation name="sayHello">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://localhost:8080"/>
+			</input>
+			<output>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://localhost:8080"/>
+			</output>
+		</operation>
+	</binding>
+	<service name="HelloService">
+		<port name="HelloIFPort" binding="tns:HelloIFBinding">
+			<soap:address location="REPLACE_WITH_ACTUAL_URL"/>
+		</port>
+	</service>
+</definitions>

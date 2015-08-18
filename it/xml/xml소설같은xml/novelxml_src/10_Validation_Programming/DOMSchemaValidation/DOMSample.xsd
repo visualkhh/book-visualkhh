@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:element name="booklist">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="book" minOccurs="1" maxOccurs="unbounded">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="name">
+                <xsd:complexType>
+                  <xsd:simpleContent>
+                    <xsd:extension base="xsd:string">
+                      <xsd:attribute name="outpage" type="xsd:string" use="optional" />
+                    </xsd:extension>
+                  </xsd:simpleContent>
+                </xsd:complexType>
+              </xsd:element>
+              <xsd:element name="authors">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element name="author" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+              <xsd:element name="page" type="xsd:integer" />
+              <xsd:element name="publish" minOccurs="0" maxOccurs="1">
+                <xsd:complexType>
+                  <xsd:attribute name="year" type="xsd:integer" use="optional" />
+                  <xsd:attribute name="month" type="xsd:integer" use="optional" />
+                  <xsd:attribute name="date" type="xsd:integer" use="optional" />
+                </xsd:complexType>
+              </xsd:element>
+              <xsd:element name="price">
+                <xsd:complexType>
+                  <xsd:simpleContent>
+                    <xsd:extension base="xsd:integer">
+                      <xsd:attribute name="unit" type="dataType_unit" use="optional" default="won" />
+                    </xsd:extension>
+                  </xsd:simpleContent>
+                </xsd:complexType>
+              </xsd:element>
+            </xsd:sequence>
+            <xsd:attribute name="isbn" type="xsd:ID" use="required" />
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  
+  <xsd:simpleType name="dataType_unit">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="won" />
+      <xsd:enumeration value="dollor" />
+    </xsd:restriction>
+  </xsd:simpleType>
+</xsd:schema>

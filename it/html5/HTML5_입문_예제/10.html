@@ -1,0 +1,279 @@
+
+예제 10.1
+// 메시지를 수신. MessageEvent 형의 객체를 얻음
+window.onmessage = function(e){
+	// origin 속성으로부터 송신처를 확인
+	if(e.origin == "http://localhost"){
+		// data 속성으로부터 수신된 메시지 내용을 확인
+		alert(e.data);
+	}
+};
+
+
+예제 10.2
+//메시지 수신. MessageEvent 형의 객체를 얻음
+window.addEventListener("message", function(e){
+	. . .
+}, false);
+
+
+
+예제 10.3
+<iframe
+	id="message-dest"
+	src="message-dest.html"
+	width="..." height="..."></iframe>
+
+예제 10.4
+var destFrame = document.getElementById("message-dest");
+destFrame.contentWindow.postMessage("메시지 내용",
+	"http://desc.example.com");
+
+
+
+예제 10.5
+// 메시지 수신 처리
+// 인수는 MessageEvent 형의 객체
+window.onmessage = function(e){
+	// 반드시 메시지 송신처를 확인
+	if(e.origin == "http://example.com"){
+	. . .
+	}
+}
+
+
+
+예제 10.6　main.html
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>크로스 도큐먼트 메시징 예제</title>
+<script type="text/javascript">
+		var MYORIGIN = location.protocol + "//" + location.host;
+	function init() {
+		var iframe = document.getElementsByTagName("iframe")[0];
+		// 1초마다 IFrame에 메시지를 보냄
+		setInterval(function() {
+			// 현재 시각을 문자열로 만듦
+			var date = new Date();
+			var dateStr =
+				date.getFullYear() + "/" + 
+				(date.getMonth() + 1) + "/" + 
+				date.getDate() +
+				" " + 
+				date.getHours() + ":" + 
+				date.getMinutes() + ":" + 
+				date.getSeconds();
+			// 난수 생성
+			var number = Math.floor(Math.random() * 100);
+			// IFrame에 메시지를 보냄
+			 iframe.contentWindow.postMessage({
+				 date: dateStr,
+				 number: number
+			 }, MYORIGIN);
+			document.getElementById("msg").innerHTML =
+				dateStr + " 생성된 값은 " + number + "생성된 값은 입니다.";
+		}, 1000);
+	}
+</script>
+</head>
+<body onload="init()">
+	<div id="msg"></div>
+	 <iframe src=frame.html width=500 height=200></iframe>
+</body>
+</html>
+　
+
+예제 10.7　frame.html
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<script type="text/javascript">
+var MYORIGIN = location.protocol + "//" + location.host;
+// 메시지 수신
+window.addEventListener("message" , function(e) {
+	// 보내는 곳의 도메인을 검사
+	if ( e.origin == MYORIGIN ) {
+		document.body.innerHTML =
+			"<div>" + e.data.date + " 송시된 값은 [" + 
+			 e.data.number + "]입니다.";
+	}
+}, false);
+</script>
+</head>
+<body>
+</body>
+</html>
+
+
+
+예제 10.8
+var channel =	new MessageChannel();
+
+
+
+
+예제 10.9
+// message 이벤트 핸들러 설정
+channel.port2.addEventListener("message", function(e){
+	alert("수신한 메시지: " + e.data);
+}, false);
+// 혹은 onmessage 속성에 핸들러를 지정
+// channel.port2.onmessage =function(e) { . . . }
+
+
+
+예제 10.10
+channel. port1.start() ;
+channel. port2.start() ;
+
+
+예제 10.11
+channel.port1.postMessage("테스트");
+
+
+
+예제 10.12　channel-messaging-sample1.html
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+.messageLog {
+	width: 200px; height: 200px;
+	overflow: scroll; float: left;
+}
+</style>
+<title></title>
+<script type="text/javascript">
+// 채널 생성
+var channel = new MessageChannel() ;
+// 포트를 사용 가능하게 함
+channel.port1.start();
+channel.port2.start();
+// <표시 영역 추가> 버튼을 누를 때의 처리
+function addDisplay() {
+	// div 생성
+	var div = document.createElement("div");
+	div.className = "messageLog";
+	document.getElementById("messageLogs").appendChild(div);
+	// port2에 이벤트 핸들러를 추가
+	 channel.port2.addEventListener("message" , function(e) {
+		div.innerHTML += "<div>" + e.data + "</div>";
+	}, false);
+}
+// <송신> 버튼을 누를 때의 처리
+function showMsg() {
+	var msg = document.getElementById("msg").value;
+	// port1에 이벤트 핸들러를 추가
+	 channel.port1.postMessage(msg);
+}
+</script>
+</head>
+<body>
+<h1>채널 메시징 예제</h1>
+<input id="msg" type="text">
+<button onclick="showMsg()">송신</button>
+<button onclick="addDisplay()">표시 영역 추가</button>
+<div id="messageLogs"></div>
+</body>
+</html>
+
+
+
+
+예제 10.13　Subscriber側の擬似コ?ド
+// 여기서 publisher는 별도의 윈도우임
+var publisher = window.open(...);
+// 채널 생성
+var channel =	new MessageChannel();
+// Publisher에 포트를 공개
+publisher.postMessage("registerPort", [channel.port1], "*");
+
+
+
+예제 10.14　Publisher側の擬似コ?ド
+// Subscriber로부터 받은 포트를 저장하는 변수
+var port;
+// 크로스 도큐먼트 메시징을 수신하는 핸들러
+onmessage = function(e) {
+	if (e.data == "registerPort") {
+		// 포트를 얻어 변수에 저장
+		port = e.ports[0] ;
+	}
+	...
+};
+function publish(msg) {
+	// 포트를 통해 메시지를 송신
+	 port.postMessage(msg) ;
+}
+
+
+
+예제 10.15　메인 페이지의 소스 코드(main.html)
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>포트 공개 예제</title>
+<script type="text/javascript">
+var ports = [];
+// 메시지 수신용 핸들러
+onmessage = function(e) {
+	// 메시지에 포함할 포트를 ports에 저장
+	for (var i = 0; i < e.ports.length ; i++) {
+		ports.push( e.ports[i] );
+	}
+};
+// <표시 영역 추가> 버튼을 누를 때의 처리
+function addDisplay() {
+	var frame = document.createElement("iframe");
+	frame.width = 200, frame.height = 200;
+	frame.src = "iframe.html";
+	document.getElementById("messageLogs").appendChild(frame);
+}
+// <송신> 버튼을 누를 때의 처리
+function showMsg() {
+	var msg = document.getElementById("msg").value;
+	// 모든 포트에 대해 메시지를 송신
+	for (var i = 0; i < ports.length; i++) {
+		 ports[i].postMessage(msg) ;
+	}
+}
+</script>
+</head>
+<body>
+<h1>포트 공개 예제</h1>
+<input id="msg" type="text">
+<button onclick="showMsg()">송신</button>
+<button onclick="addDisplay()">표시 영역 추가</button>
+<div id="messageLogs"></div>
+</body>
+</html>
+
+
+
+예제 10.16 IFrame 안에 표시될 페이지(iframe.html)
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<script type="text/javascript">
+var MYORIGIN = location.protocol + "//" + location.host;
+// 채널 생성
+var channel = new MessageChannel ();
+// 메인 페이지에 포트1을 송신
+top.postMessage("", [channel.port1], MYORIGIN);
+// 포트2로부터 메시지를 읽어 표시
+channel.port2.onmessage = function(e) {
+	document.body.innerHTML += "<div>" + e.data + "</div>";
+};
+</script>
+</head>
+<body>
+</body>
+</html>

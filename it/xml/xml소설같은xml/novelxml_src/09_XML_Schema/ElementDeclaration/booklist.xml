@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<booklist xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:noNamespaceSchemaLocation="booklist.xsd">
+    <book>
+        <name>Programming .NET Components, Second Edition</name>
+        <author>Juval Lowy</author>
+        <page>648</page>
+        <price>51300</price>
+    </book>
+</booklist>

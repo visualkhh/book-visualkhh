@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BookList>
+<Book>
+<id>W1861003323</id>
+<part>XML</part>
+<Title>Professional VB6 XML</Title>
+<Author>James Britt, Teun Duynstee</Author>
+<Publisher>Wrox Press, Ltd.</Publisher>
+<PubDate>March 2000</PubDate>
+<ISBN>1-861003-32-3</ISBN>
+<Price>49.99</Price>
+<CoverImage>3323.gif</CoverImage>
+<Stock>4</Stock>
+</Book>
+<Book>
+<id>W1861003129</id>
+<part>XSLT</part>
+<Title>XSLT Programmer's Reference</Title>
+<Author>Michael Kay</Author>
+<Publisher>Wrox Press, Ltd.</Publisher>
+<PubDate>April 2000</PubDate>
+<ISBN>1-861003-12-9</ISBN>
+<Price>34.99</Price>
+<CoverImage>3129.gif</CoverImage>
+<Stock>2</Stock>
+</Book>
+<Book>
+<id>W1861003130</id>
+<part>XML</part>
+<Title>.NET &amp; XML</Title>
+<Author>Niel M.</Author>
+<Publisher>Oreilly</Publisher>
+<PubDate>November 2003</PubDate>
+<ISBN>0-596-00397-8</ISBN>
+<Price>39.95</Price>
+<CoverImage>netxml.gif</CoverImage>
+<Stock>6</Stock>
+</Book>
+<Book>
+<id>W1861003112</id>
+<part>XSLT</part>
+<Title>Learning XSLT</Title>
+<Author>Michael itzgerald</Author>
+<Publisher>Oreilly</Publisher>
+<PubDate>November 2003</PubDate>
+<ISBN>0-596-00327-7</ISBN>
+<Price>34.95</Price>
+<CoverImage>learnxslt.gif</CoverImage>
+<Stock>5</Stock>
+</Book>
+</BookList>

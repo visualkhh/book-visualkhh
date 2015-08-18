@@ -1,0 +1,134 @@
+
+예제 8.1
+<div id="editor" contenteditable="true"></div>
+<!-- 아래처럼 값을 생략해도 상관없음 -->
+<!--
+<div id="editor" contenteditable></div>
+-->
+
+
+예제 8.2
+<div id="editor" contenteditable="true">
+	<div>편집 가능</div>
+	<div contenteditable="false">편집 불가</div>
+</div>
+
+
+예제 8.3
+var editor = document.getElementById("editor");
+// 현재 편집 가능이라면 불가능으로 바꿈. else 이하는 그 반대.
+if (editor.isContentEditable ) {
+	editor.contentEditable = "false";
+} else {
+	editor.contentEditable = "true";
+}
+
+
+
+예제 8.4
+<!--
+	onload 속성에 주목.
+	로딩이 끝남과 동시에 designMode에 'on' 값을 지정
+-->
+<iframe
+	src="about:blank"
+	width="300" height="200"
+	onload=" this.contentDocument.designMode = 'on' ">
+</iframe>
+
+예제 8.5
+document.execCommand("bold", false, false);
+
+
+
+예제 8.6
+<div id="editor" contenteditable></div>
+var editor = document.getElementById("editor");
+// innerHTML 속성을 읽어들임
+alert( editor.innerHTML );
+
+
+예제 8.7
+<iframe
+	id="editor"
+	src="about:blank"
+	width="300" height="200"
+	onload=" this.contentDocument.designMode = 'on' ">
+</iframe>
+var editor = document.getElementById("editor");
+//textContent 속성을 읽어들임
+alert( editor.contentDocument.body.textContent );
+
+
+
+예제 8.8
+// 선택 상태를 나타내는 Selection 객체를 생성
+var selection = window.getSelection();
+
+
+예제 8.9
+<div id="editor" contenteditable>ABCDE</div>
+var editor = document.getElementById("editor");
+// editor 요소의 맨 뒤로 커서를 이동
+window.getSelection().collapse(editor, 1) ;
+
+
+예제 8.10
+// 텍스트 안 임의의 위치로 커서를 이동
+// DOM의 firstChild 속성에 접근하여 텍스트 노드를 가져옴
+window.getSelection().collapse(editor.firstChild, 2) ;
+
+
+예제 8.11
+// 선택된 문자열 출력 
+alert(window.getSelection().toString());
+
+
+예제 8.12
+<script>
+function init() {
+	var editor = document.getElementById("editor");
+	// 편집 가능한 요소로 포커스 이동
+	editor.focus();
+	var selection = window.getSelection();
+	// 요소를 선택 상태로 만듦
+	selection.selectAllChildren(editor) ;
+	// 커서를 맨 뒤로 이동
+	selection.collapseToEnd() ;
+	// 커서의 이동은 collapse()를 사용하면 한 줄로 쓸 수 있습니다.
+	// selection.collapse(editor, 1);
+}
+</script>
+</head>
+<body onload="init()">
+<div id="editor" contenteditable>
+	텍스트를 입력해 주십시오.
+</div>
+
+예제 8.13
+<input
+	type="text"
+	onfocus=" this.select() "
+	onblur="alert(this.value.substring( this.selectionStart , 
+														 this.selectionEnd ));">
+
+
+예제 8.14
+undoManager.add ({
+	operation: "add-favorite",
+	id: 100
+},
+"즐겨찾기");
+
+
+예제 8.15
+// 실행 취소 처리
+window.addEventListener("undo" , function(event) {
+	var data = event.data;
+	if (data.operation == "add-favorite") {
+		var id = data.id;
+		// 즐겨찾기로부터의 삭제 처리 시작
+		...
+	}
+	...
+}, false);

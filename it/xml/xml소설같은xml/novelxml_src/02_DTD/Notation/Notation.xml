@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="euc-kr"?>
+
+<!DOCTYPE imgdata [
+<!ELEMENT	imgdata	(name+)>
+<!ELEMENT	name	(#PCDATA)>
+<!NOTATION	GIF	SYSTEM		"ACDSee.exe">
+<!NOTATION	JPG	SYSTEM		"ALSee.exe">
+<!NOTATION	BMP	SYSTEM		"MSPaint.exe">
+<!ATTLIST	name	type NOTATION	(GIF | JPG | BMP)	#REQUIRED>
+]>
+
+<imgdata>
+	<name type="GIF">junjihyung.gif</name>
+	<name type="BMP">bueatydog.bmp</name>
+</imgdata>

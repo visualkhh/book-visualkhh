@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="euc-kr"?>
+
+<!DOCTYPE BookList [
+<!ELEMENT BookList (Book+)>
+<!ELEMENT Book (#PCDATA)>
+<!ENTITY name "XML 프로그래밍">
+<!ENTITY bookContent SYSTEM "book.xml">
+]>
+
+<BookList>
+	<Book>
+		&name;
+	</Book>
+	&bookContent;
+</BookList>
+<!-- //
+<?xml version="1.0" encoding="euc-kr" ?> 
+<!DOCTYPE BookList (View Source for full doctype...)> 
+<BookList>
+	<Book>XML 프로그래밍</Book> 
+	<Book>XML Web Services</Book> 
+</BookList>
+// -->

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="euc-kr" standalone="no"?>
+
+<!DOCTYPE booklist [
+<!ELEMENT	booklist	(book+)>
+<!ELEMENT	book		(name, authors, page, publish?, price)>
+<!ELEMENT	name		(#PCDATA)>
+<!ELEMENT	authors		(author+)>
+<!ELEMENT	author		(#PCDATA)>
+<!ELEMENT	page		(#PCDATA)>
+<!ELEMENT	publish		EMPTY>
+<!ELEMENT	price		(#PCDATA)>
+	
+<!ATTLIST	book		isbn	ID	#REQUIRED>
+<!ATTLIST	name		outpage	CDATA	#IMPLIED>
+<!ATTLIST	publish		year	CDATA	#IMPLIED
+				month	CDATA	#IMPLIED
+				day	CDATA	#IMPLIED>
+<!ATTLIST	price		unit	CDATA	"won">
+]>
+
+<!-- Book List XML Document -->
+<booklist>
+	<book isbn="h0-596-00762-0">
+		<name outpage="ProgrammingNETComponents.gif">Programming .NET Components, Second Edition</name>
+		<authors>
+			<author>Juval Lowy</author>
+		</authors>
+		<page>648</page>
+		<publish year="2005" month="06" />
+		<price unit="won">51300</price>
+	</book>
+</booklist>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<tModelDetail generic="2.0" xmlns="urn:uddi-org:api_v2"
+                   operator="www.ibm.com/services/uddi" truncated="false">
+	<tModel tModelKey="UUID:68DE9E80-AD09-469D-8A37-088422BFBC36"
+              operator="www.ibm.com/services/uddi" authorizedName="100000HSY8">
+		<name>ourHello</name> 
+		<overviewDoc>
+			<overviewURL>
+				http://localhost:8080/hello-jaxrpc/hello?WSDL
+			</overviewURL> 
+		</overviewDoc>
+	</tModel>
+</tModelDetail>

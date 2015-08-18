@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="euc-kr"?>
+
+<!DOCTYPE Computer [
+<!ELEMENT Computer (CPU, Memory, GraphicCard)>
+<!ELEMENT CPU (#PCDATA)>
+<!ELEMENT Memory (#PCDATA)>
+<!ELEMENT GraphicCard (#PCDATA)>
+]>
+
+<Computer>
+	<Memory>512 MB</Memory>
+	<GraphicCard>Radeon 9200</GraphicCard>
+</Computer>

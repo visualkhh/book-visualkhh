@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="euc-kr"?>
+
+<!-- 서적 정보를 나타내는 XML 문서 -->
+<Book>
+	<Title>XML과 XML Web Service</Title>
+	<!-- 여기에도 주석문을 쓸 수 있다. -->
+	<Author>이명진</Author>
+</Book>

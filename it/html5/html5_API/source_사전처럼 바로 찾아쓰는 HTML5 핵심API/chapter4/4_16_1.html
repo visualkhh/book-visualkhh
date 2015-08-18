@@ -1,0 +1,41 @@
+<!DOCTYPE html> 
+<html lang="ko">  
+<head>
+
+<style type="text/css">
+
+menu {
+	margin-left: 100px;
+	list-style-type: none;
+	list-style-position: inside;
+}
+
+menu li {
+	float: left;
+}
+
+</style>
+<meta charset="UTF-8" /> 
+<title>  </title> 
+ <script src="4_16_1.js"></script>
+</head> 
+<body> 
+
+<p>
+<video controls="controls" preload="auto"><!--  width="480" height="272" -->
+  <source src="video.mp4" type="video/mp4" />
+  <source src="video.webm" type="video/webm" />
+</video>
+</p>
+<menu>
+  <li><button title="음량 낯춤 " id="dn">&#x25bc;</button></li>
+  <li><meter value="5" min="0" max="10" low="7" high="9" optimum="5" title="음량
+ " id="vl"></meter></li>
+  <li><button title="음량 올림 " id="up">&#x25b2;</button></li>
+  <li><label><input type="checkbox" title="음소거 " id="mt" /> 음소거 </label></li>
+</menu>
+
+
+
+</body> 
+</html>

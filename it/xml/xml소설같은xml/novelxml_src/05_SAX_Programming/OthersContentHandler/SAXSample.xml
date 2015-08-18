@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<?xml-stylesheet type="text/xsl" href="booklist.xsl"?>
+
+<booklist>
+	<book isbn="h0-596-00762-0" xmlns:book="http://www.xmlcommunity.net">
+		<book:name outpage="ProgrammingNETComponents.gif">
+			Programming .NET Components, Second Edition
+		</book:name>
+		<book:page>648</book:page>
+	</book>
+</booklist>
