@@ -1,0 +1,102 @@
+
+An unexpected exception has been detected in native code outside the VM.
+Unexpected Signal : EXCEPTION_ACCESS_VIOLATION occurred at PC=0x6D1C1F78
+Function=Java_sun_awt_font_GlyphList_discardData+0x6648
+Library=C:\JBuilder9\jdk1.4\jre\bin\fontmanager.dll
+
+Current Java thread:
+	at sun.awt.font.NativeFontWrapper.getFamilyNameByIndex(Native Method)
+	- locked <133E9ED8> (a java.lang.Class)
+	at sun.java2d.SunGraphicsEnvironment.getAvailableFontFamilyNames(SunGraphicsEnvironment.java:326)
+	at sun.java2d.SunGraphicsEnvironment.getAvailableFontFamilyNames(SunGraphicsEnvironment.java:359)
+	at javax.swing.text.html.CSS.getValidFontNameMapping(CSS.java:910)
+	- locked <030D8B58> (a java.lang.Object)
+	at javax.swing.text.html.CSS$FontFamily.parseCssValue(CSS.java:1858)
+	at javax.swing.text.html.CSS.getInternalCSSValue(CSS.java:529)
+	at javax.swing.text.html.CSS.addInternalCSSValue(CSS.java:514)
+	at javax.swing.text.html.StyleSheet.addCSSAttribute(StyleSheet.java:464)
+	at javax.swing.text.html.StyleSheet$CssParser.handleValue(StyleSheet.java:3112)
+	at javax.swing.text.html.CSSParser.parseDeclaration(CSSParser.java:341)
+	at javax.swing.text.html.CSSParser.parseDeclarationBlock(CSSParser.java:308)
+	at javax.swing.text.html.CSSParser.parseRuleSet(CSSParser.java:255)
+	at javax.swing.text.html.CSSParser.getNextStatement(CSSParser.java:161)
+	at javax.swing.text.html.CSSParser.parse(CSSParser.java:136)
+	at javax.swing.text.html.StyleSheet$CssParser.parse(StyleSheet.java:3034)
+	at javax.swing.text.html.StyleSheet.loadRules(StyleSheet.java:303)
+	at javax.swing.text.html.HTMLEditorKit.getStyleSheet(HTMLEditorKit.java:359)
+	at javax.swing.text.html.HTMLEditorKit.createDefaultDocument(HTMLEditorKit.java:186)
+	at javax.swing.JEditorPane.setEditorKit(JEditorPane.java:945)
+	at com.borland.jbuilder.TipDialog.a(Unknown Source)
+	at com.borland.jbuilder.TipDialog.<init>(Unknown Source)
+	at com.borland.jbuilder.TipDialog.showTip(Unknown Source)
+	at com.borland.jbuilder.TipDialog.showLaunchTip(Unknown Source)
+	at com.borland.jbuilder.ac.run(Unknown Source)
+	at java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:178)
+	at java.awt.EventQueue.dispatchEvent(EventQueue.java:448)
+	at java.awt.EventDispatchThread.pumpOneEventForHierarchy(EventDispatchThread.java:197)
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:150)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:144)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:136)
+	at java.awt.EventDispatchThread.run(EventDispatchThread.java:99)
+
+Dynamic libraries:
+0x00400000 - 0x00419000 	C:\JBuilder9\bin\JBuilder.exe
+0x77F50000 - 0x77FF7000 	C:\WINDOWS\System32\ntdll.dll
+0x77E20000 - 0x77F40000 	C:\WINDOWS\system32\kernel32.dll
+0x77D80000 - 0x77E1A000 	C:\WINDOWS\system32\ADVAPI32.DLL
+0x78000000 - 0x78087000 	C:\WINDOWS\system32\RPCRT4.dll
+0x71A00000 - 0x71A0A000 	C:\WINDOWS\System32\WSOCK32.DLL
+0x719E0000 - 0x719F4000 	C:\WINDOWS\System32\WS2_32.dll
+0x77BC0000 - 0x77C13000 	C:\WINDOWS\system32\msvcrt.dll
+0x719D0000 - 0x719D8000 	C:\WINDOWS\System32\WS2HELP.dll
+0x77CF0000 - 0x77D7C000 	C:\WINDOWS\system32\USER32.DLL
+0x7E190000 - 0x7E1D1000 	C:\WINDOWS\system32\GDI32.dll
+0x762E0000 - 0x762FC000 	C:\WINDOWS\System32\IMM32.DLL
+0x62340000 - 0x62348000 	C:\WINDOWS\System32\LPK.DLL
+0x72EF0000 - 0x72F4A000 	C:\WINDOWS\System32\USP10.dll
+0x71980000 - 0x719BB000 	C:\WINDOWS\System32\mswsock.dll
+0x76ED0000 - 0x76EF5000 	C:\WINDOWS\System32\DNSAPI.dll
+0x76F70000 - 0x76F75000 	C:\WINDOWS\System32\rasadhlp.dll
+0x6D340000 - 0x6D46A000 	C:\JBuilder9\jdk1.4\jre\bin\client\jvm.dll
+0x76AF0000 - 0x76B1A000 	C:\WINDOWS\System32\WINMM.dll
+0x6D1E0000 - 0x6D1E7000 	C:\JBuilder9\jdk1.4\jre\bin\hpi.dll
+0x6D310000 - 0x6D31E000 	C:\JBuilder9\jdk1.4\jre\bin\verify.dll
+0x6D220000 - 0x6D239000 	C:\JBuilder9\jdk1.4\jre\bin\java.dll
+0x6D330000 - 0x6D33D000 	C:\JBuilder9\jdk1.4\jre\bin\zip.dll
+0x6D000000 - 0x6D105000 	C:\JBuilder9\jdk1.4\jre\bin\awt.dll
+0x72F50000 - 0x72F73000 	C:\WINDOWS\System32\WINSPOOL.DRV
+0x7CBD0000 - 0x7CCF4000 	C:\WINDOWS\system32\ole32.dll
+0x5A480000 - 0x5A4B4000 	C:\WINDOWS\System32\uxtheme.dll
+0x51000000 - 0x5104D000 	C:\WINDOWS\System32\ddraw.dll
+0x73B10000 - 0x73B16000 	C:\WINDOWS\System32\DCIMAN32.dll
+0x5C000000 - 0x5C0C8000 	C:\WINDOWS\System32\D3DIM700.DLL
+0x6D190000 - 0x6D1E0000 	C:\JBuilder9\jdk1.4\jre\bin\fontmanager.dll
+0x74660000 - 0x746A4000 	C:\WINDOWS\System32\MSCTF.dll
+0x29820000 - 0x2984B000 	C:\WINDOWS\System32\msctfime.ime
+0x3A700000 - 0x3A718000 	C:\WINDOWS\System32\imekr61.ime
+0x77380000 - 0x77B72000 	C:\WINDOWS\system32\SHELL32.dll
+0x70A70000 - 0x70AD5000 	C:\WINDOWS\system32\SHLWAPI.dll
+0x772F0000 - 0x7737B000 	C:\WINDOWS\system32\COMCTL32.dll
+0x78090000 - 0x78174000 	C:\WINDOWS\WinSxS\x86_Microsoft.Windows.Common-Controls_6595b64144ccf1df_6.0.10.0_x-ww_f7fb5805\comctl32.dll
+0x770D0000 - 0x7715B000 	C:\WINDOWS\system32\oleaut32.dll
+0x6D2E0000 - 0x6D2EE000 	C:\JBuilder9\jdk1.4\jre\bin\net.dll
+0x719C0000 - 0x719C8000 	C:\WINDOWS\System32\wshtcpip.dll
+0x29D90000 - 0x29D97000 	C:\JBuilder9\bin\StSDKNativeFileAccess_01.dll
+0x29DA0000 - 0x29DBC000 	C:\JBuilder9\bin\StWinProfile.dll
+0x76730000 - 0x76738000 	C:\WINDOWS\System32\SHFOLDER.dll
+0x29DD0000 - 0x29DD6000 	C:\JBuilder9\bin\StSDKOSEnvironment.dll
+0x76F60000 - 0x76F67000 	C:\WINDOWS\System32\winrnr.dll
+0x76F10000 - 0x76F3C000 	C:\WINDOWS\system32\WLDAP32.dll
+0x75E90000 - 0x75EAF000 	C:\WINDOWS\system32\Apphelp.dll
+0x76C40000 - 0x76C62000 	C:\WINDOWS\system32\imagehlp.dll
+0x6D9D0000 - 0x6DA4D000 	C:\WINDOWS\system32\DBGHELP.dll
+0x77BB0000 - 0x77BB7000 	C:\WINDOWS\system32\VERSION.dll
+0x76BA0000 - 0x76BAB000 	C:\WINDOWS\System32\PSAPI.DLL
+
+Local Time = Thu May 27 23:35:40 2004
+Elapsed Time = 110
+#
+# The exception above was detected in native code outside the VM
+#
+# Java VM: Java HotSpot(TM) Client VM (1.4.1_02-b06 mixed mode)
+#

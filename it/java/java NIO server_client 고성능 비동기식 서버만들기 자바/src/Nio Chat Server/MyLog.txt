@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="windows-949" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2002-11-02T11:53:01</date>
+  <millis>1036205581984</millis>
+  <sequence>0</sequence>
+  <logger>kr.or.javacafe</logger>
+  <level>INFO</level>
+  <class>kr.or.javacafe.NioServer</class>
+  <method>info</method>
+  <thread>10</thread>
+  <message>Server is initiate</message>
+</record>
+<record>
+  <date>2002-11-02T11:53:02</date>
+  <millis>1036205582140</millis>
+  <sequence>1</sequence>
+  <logger>kr.or.javacafe</logger>
+  <level>INFO</level>
+  <class>kr.or.javacafe.NioServer</class>
+  <method>info</method>
+  <thread>10</thread>
+  <message>Server is start</message>
+</record>
+<record>
+  <date>2002-11-02T11:53:12</date>
+  <millis>1036205592734</millis>
+  <sequence>2</sequence>
+  <logger>kr.or.javacafe</logger>
+  <level>INFO</level>
+  <class>kr.or.javacafe.NioServer</class>
+  <method>info</method>
+  <thread>10</thread>
+  <message>Key is Acceptable</message>
+</record>
+<record>
+  <date>2002-11-02T11:53:14</date>
+  <millis>1036205594718</millis>
+  <sequence>3</sequence>
+  <logger>kr.or.javacafe</logger>
+  <level>INFO</level>
+  <class>kr.or.javacafe.NioServer</class>
+  <method>info</method>
+  <thread>10</thread>
+  <message>Key is Readable</message>
+</record>
+<record>
+  <date>2002-11-02T11:53:16</date>
+  <millis>1036205596890</millis>
+  <sequence>4</sequence>
+  <logger>kr.or.javacafe</logger>
+  <level>INFO</level>
+  <class>kr.or.javacafe.NioServer</class>
+  <method>info</method>
+  <thread>10</thread>
+  <message>Key is Readable</message>
+</record>
+<record>
+  <date>2002-11-02T11:53:18</date>
+  <millis>1036205598812</millis>
+  <sequence>5</sequence>
+  <logger>kr.or.javacafe</logger>
+  <level>INFO</level>
+  <class>kr.or.javacafe.NioServer</class>
+  <method>info</method>
+  <thread>10</thread>
+  <message>Key is Readable</message>
+</record>
+<record>
+  <date>2002-11-02T11:54:05</date>
+  <millis>1036205645140</millis>
+  <sequence>6</sequence>
+  <logger>kr.or.javacafe</logger>
+  <level>INFO</level>
+  <class>kr.or.javacafe.NioServer</class>
+  <method>info</method>
+  <thread>10</thread>
+  <message>Key is Readable</message>
+</record>
+<record>
+  <date>2002-11-02T11:54:08</date>
+  <millis>1036205648390</millis>
+  <sequence>7</sequence>
+  <logger>kr.or.javacafe</logger>
+  <level>INFO</level>
+  <class>kr.or.javacafe.NioServer</class>
+  <method>info</method>
+  <thread>10</thread>
+  <message>Key is Acceptable</message>
+</record>
+<record>
+  <date>2002-11-02T11:54:09</date>
+  <millis>1036205649734</millis>
+  <sequence>8</sequence>
+  <logger>kr.or.javacafe</logger>
+  <level>INFO</level>
+  <class>kr.or.javacafe.NioServer</class>
+  <method>info</method>
+  <thread>10</thread>
+  <message>Key is Readable</message>
+</record>
+<record>
+  <date>2002-11-02T11:54:12</date>
+  <millis>1036205652031</millis>
+  <sequence>9</sequence>
+  <logger>kr.or.javacafe</logger>
+  <level>INFO</level>
+  <class>kr.or.javacafe.NioServer</class>
+  <method>info</method>
+  <thread>10</thread>
+  <message>Key is Readable</message>
+</record>
+</log>

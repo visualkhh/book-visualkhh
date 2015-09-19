@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="windows-949" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2002-11-06T23:37:10</date>
+  <millis>1036593430578</millis>
+  <sequence>0</sequence>
+  <logger>kr.or.javacafe</logger>
+  <level>INFO</level>
+  <class>kr.or.javacafe.AdvancedNioServer</class>
+  <method>info</method>
+  <thread>10</thread>
+  <message>Server is initiate</message>
+</record>
+<record>
+  <date>2002-11-06T23:37:10</date>
+  <millis>1036593430687</millis>
+  <sequence>1</sequence>
+  <logger>kr.or.javacafe</logger>
+  <level>INFO</level>
+  <class>kr.or.javacafe.AdvancedNioServer</class>
+  <method>info</method>
+  <thread>11</thread>
+  <message>Worker1 is ready</message>
+</record>
+<record>
+  <date>2002-11-06T23:37:10</date>
+  <millis>1036593430687</millis>
+  <sequence>2</sequence>
+  <logger>kr.or.javacafe</logger>
+  <level>INFO</level>
+  <class>kr.or.javacafe.AdvancedNioServer</class>
+  <method>info</method>
+  <thread>12</thread>
+  <message>Worker2 is ready</message>
+</record>
+<record>
+  <date>2002-11-06T23:37:10</date>
+  <millis>1036593430687</millis>
+  <sequence>3</sequence>
+  <logger>kr.or.javacafe</logger>
+  <level>INFO</level>
+  <class>kr.or.javacafe.AdvancedNioServer</class>
+  <method>info</method>
+  <thread>13</thread>
+  <message>Worker3 is ready</message>
+</record>
+<record>
+  <date>2002-11-06T23:37:10</date>
+  <millis>1036593430703</millis>
+  <sequence>4</sequence>
+  <logger>kr.or.javacafe</logger>
+  <level>INFO</level>
+  <class>kr.or.javacafe.AdvancedNioServer</class>
+  <method>info</method>
+  <thread>14</thread>
+  <message>Worker4 is ready</message>
+</record>
+<record>
+  <date>2002-11-06T23:37:10</date>
+  <millis>1036593430718</millis>
+  <sequence>5</sequence>
+  <logger>kr.or.javacafe</logger>
+  <level>INFO</level>
+  <class>kr.or.javacafe.AdvancedNioServer</class>
+  <method>info</method>
+  <thread>15</thread>
+  <message>Worker5 is ready</message>
+</record>
+<record>
+  <date>2002-11-06T23:37:10</date>
+  <millis>1036593430781</millis>
+  <sequence>6</sequence>
+  <logger>kr.or.javacafe</logger>
+  <level>INFO</level>
+  <class>kr.or.javacafe.AdvancedNioServer</class>
+  <method>info</method>
+  <thread>10</thread>
+  <message>Server is started..</message>
+</record>
+<record>
+  <date>2002-11-06T23:37:21</date>
+  <millis>1036593441906</millis>
+  <sequence>7</sequence>
+  <logger>kr.or.javacafe</logger>
+  <level>INFO</level>
+  <class>kr.or.javacafe.AdvancedNioServer</class>
+  <method>info</method>
+  <thread>10</thread>
+  <message>클라이언트가 접속했습니다.</message>
+</record>
+<record>
+  <date>2002-11-06T23:37:23</date>
+  <millis>1036593443312</millis>
+  <sequence>8</sequence>
+  <logger>kr.or.javacafe</logger>
+  <level>INFO</level>
+  <class>kr.or.javacafe.AdvancedNioServer</class>
+  <method>info</method>
+  <thread>10</thread>
+  <message>클라이언트가 접속했습니다.</message>
+</record>
+<record>
+  <date>2002-11-06T23:37:25</date>
+  <millis>1036593445531</millis>
+  <sequence>9</sequence>
+  <logger>kr.or.javacafe</logger>
+  <level>INFO</level>
+  <class>kr.or.javacafe.AdvancedNioServer</class>
+  <method>info</method>
+  <thread>10</thread>
+  <message>클라이언트가 접속했습니다.</message>
+</record>
+<record>
+  <date>2002-11-06T23:38:05</date>
+  <millis>1036593485765</millis>
+  <sequence>10</sequence>
+  <logger>kr.or.javacafe</logger>
+  <level>INFO</level>
+  <class>kr.or.javacafe.AdvancedNioServer</class>
+  <method>info</method>
+  <thread>14</thread>
+  <message>클라이언트가 접속을 종료했습니다.</message>
+</record>
+<record>
+  <date>2002-11-06T23:38:07</date>
+  <millis>1036593487109</millis>
+  <sequence>11</sequence>
+  <logger>kr.or.javacafe</logger>
+  <level>INFO</level>
+  <class>kr.or.javacafe.AdvancedNioServer</class>
+  <method>info</method>
+  <thread>15</thread>
+  <message>클라이언트가 접속을 종료했습니다.</message>
+</record>
+<record>
+  <date>2002-11-06T23:38:08</date>
+  <millis>1036593488828</millis>
+  <sequence>12</sequence>
+  <logger>kr.or.javacafe</logger>
+  <level>INFO</level>
+  <class>kr.or.javacafe.AdvancedNioServer</class>
+  <method>info</method>
+  <thread>11</thread>
+  <message>클라이언트가 접속을 종료했습니다.</message>
+</record>
+</log>

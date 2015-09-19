@@ -1,0 +1,54 @@
+<editmodel:ClassDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" size="615,392" id="javaAdministratorMaso2th0" metadata="nsuml-1.4" initialized="true">
+  <children xsi:type="editmodel:ClassEditModel" location="215,51" size="159,103" targetConnections="//@children.1/@sourceConnections.0 //@children.2/@sourceConnections.0 //@children.3/@sourceConnections.0" id="javaAdministratorMaso2th2" runTimeClassModel="javaAdministratorMaso2th17;javaAdministratorMaso2th9;javaAdministratorMaso2th7;javaAdministratorMaso2th3;javaAdministratorMaso2th11;javaAdministratorMaso2th13">
+    <children xsi:type="editmodel:CompartmentEditModel" size="4,4" viewSorter="Name"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="124,58" viewSorter="Name">
+      <children xsi:type="editmodel:MethodEditModel" id="javaAdministratorMaso2th11"/>
+      <children xsi:type="editmodel:MethodEditModel" id="javaAdministratorMaso2th13"/>
+      <children xsi:type="editmodel:MethodEditModel" id="javaAdministratorMaso2th17"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="4,4" viewSorter="Name"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" location="125,211" size="163,85" id="javaAdministratorMaso2th27" runTimeClassModel="javaAdministratorMaso2th31;javaAdministratorMaso2th29">
+    <children xsi:type="editmodel:CompartmentEditModel" size="4,4" viewSorter="Name"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="126,40" viewSorter="Name">
+      <children xsi:type="editmodel:MethodEditModel" id="javaAdministratorMaso2th29"/>
+      <children xsi:type="editmodel:MethodEditModel" id="javaAdministratorMaso2th31"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="4,4" viewSorter="Name"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" id="javaAdministratorMaso2th28" connectionRouterKind="Manual" source="//@children.1" target="//@children.0" targetEnd="//@children.1/@sourceConnections.0/@children.1" sourceEnd="//@children.1/@sourceConnections.0/@children.0">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="81,42"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="79,51"/>
+    </sourceConnections>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" location="301,213" size="140,85" id="javaAdministratorMaso2th37" runTimeClassModel="javaAdministratorMaso2th41;javaAdministratorMaso2th39">
+    <children xsi:type="editmodel:CompartmentEditModel" size="4,4" viewSorter="Name"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="108,40" viewSorter="Name">
+      <children xsi:type="editmodel:MethodEditModel" id="javaAdministratorMaso2th39"/>
+      <children xsi:type="editmodel:MethodEditModel" id="javaAdministratorMaso2th41"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="4,4" viewSorter="Name"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" id="javaAdministratorMaso2th38" connectionRouterKind="Manual" source="//@children.2" target="//@children.0" targetEnd="//@children.2/@sourceConnections.0/@children.1" sourceEnd="//@children.2/@sourceConnections.0/@children.0">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="70,42"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="79,51"/>
+    </sourceConnections>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" location="531,51" size="261,103" id="javaAdministratorMaso2th48" runTimeClassModel="javaAdministratorMaso2th74;javaAdministratorMaso2th76;javaAdministratorMaso2th87;javaAdministratorMaso2th68;javaAdministratorMaso2th57;javaAdministratorMaso2th84;javaAdministratorMaso2th59;javaAdministratorMaso2th54;javaAdministratorMaso2th51;javaAdministratorMaso2th53;javaAdministratorMaso2th61;javaAdministratorMaso2th64;javaAdministratorMaso2th66;javaAdministratorMaso2th93;javaAdministratorMaso2th78;javaAdministratorMaso2th90;javaAdministratorMaso2th71;javaAdministratorMaso2th82">
+    <children xsi:type="editmodel:CompartmentEditModel" size="4,4" viewSorter="Name"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="110,58" viewSorter="Name">
+      <children xsi:type="editmodel:MethodEditModel" id="javaAdministratorMaso2th78"/>
+      <children xsi:type="editmodel:MethodEditModel" id="javaAdministratorMaso2th82"/>
+      <children xsi:type="editmodel:MethodEditModel" id="javaAdministratorMaso2th84"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="4,4" viewSorter="Name"/>
+    <sourceConnections xsi:type="editmodel:DependancyEditModel" targetConnections="//@children.4/@sourceConnections.0" connectionRouterKind="Manual" source="//@children.3" target="//@children.0" targetEnd="//@children.3/@sourceConnections.0/@children.1" sourceEnd="//@children.3/@sourceConnections.0/@children.0">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="130,51"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="79,51"/>
+    </sourceConnections>
+  </children>
+  <children xsi:type="editmodel:NotepadEditModel" location="470,185" size="163,38" note="AbstractCommand 클래스의 &#xD;&#xA;execute() 메소드를 호출">
+    <sourceConnections xsi:type="editmodel:IndicationEditModel" connectionRouterKind="Manual" source="//@children.4" target="//@children.3/@sourceConnections.0" targetEnd="//@children.4/@sourceConnections.0/@children.1" sourceEnd="//@children.4/@sourceConnections.0/@children.0">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="78,29"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="-46,0" anchorKind="FixedAtEdge" attachSource="true"/>
+    </sourceConnections>
+  </children>
+</editmodel:ClassDiagramEditModel>
