@@ -1,6 +1,9 @@
 package jpabook.start;
 
+import org.h2.tools.Server;
+
 import javax.persistence.*;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -8,8 +11,9 @@ import java.util.List;
  */
 public class JpaMain {
 
-    public static void main(String[] args) {
-
+    public static void main(String[] args) throws SQLException {
+//        Server server = Server.createTcpServer("-tcpPort" ,"9092", "-tcpAllowOthers").start();
+        Server.createTcpServer("-tcpAllowOthers").start();
         //엔티티 매니저 팩토리 생성
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("jpabook");
         EntityManager em = emf.createEntityManager(); //엔티티 매니저 생성
