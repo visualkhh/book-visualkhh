@@ -2,7 +2,7 @@ package visualkhh.design.patterns.responsibility_chain.airport.chains;
 
 import visualkhh.design.patterns.responsibility_chain.airport.Person;
 
-public class AirPort implements Chain{
+public class AirPort implements Chain {
     private Chain nextInChain;
 
     @Override

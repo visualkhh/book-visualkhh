@@ -10,4 +10,9 @@ public class CircleDrawing implements Drawing {
     public void fill() {
         System.out.println("Circle Fill!");
     }
+
+    @Override
+    public void delete() {
+        System.out.println("Circle delete!");
+    }
 }

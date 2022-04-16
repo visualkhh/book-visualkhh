@@ -5,7 +5,7 @@ import visualkhh.design.patterns.interpreter.expression.Expression;
 import visualkhh.design.patterns.interpreter.expression.OrExpression;
 import visualkhh.design.patterns.interpreter.expression.TerminalExpression;
 
-// https://always-intern.tistory.com/11
+//
 public class Interpreter {
     public static void main(String[] args) {
         Expression person1 = new TerminalExpression("Kushagra");

@@ -12,11 +12,11 @@ import visualkhh.design.patterns.bridge.subjects.Shape;
 public class Bridge {
     public static void main(String[] args) {
         Shape rectangle = new Rectangle(new RectDrawing());
-        Shape circle = new Circle(new CircleDrawing());
         rectangle.drawLine(1, 2);
         rectangle.fill();
         rectangle.draw();
         System.out.println();
+        Shape circle = new Circle(new CircleDrawing());
         circle.drawLine(3, 4);
         circle.fill();
         circle.draw();

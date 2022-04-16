@@ -19,4 +19,8 @@ public abstract class Shape {
     public void fill() {
         drawing.fill();
     }
+
+    public void delete() {
+        drawing.delete();
+    }
 }

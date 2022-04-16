@@ -17,7 +17,7 @@ public class ShapeFactoryManger {
             circle = Circle.builder().color(color).build();
             instances.put(color, circle);
         } else {
-            System.out.println(String.format("%s 새롭게 생성됨", color));
+            System.out.println(String.format("%s 재사용됨", color));
         }
         return circle;
     }

@@ -10,6 +10,9 @@ public class Rectangle extends Shape {
 
     @Override
     public void draw() {
+        this.drawLine(1,4);
+        this.fill();
+        this.delete();
         System.out.println("Rect draw extend");
     }
 }

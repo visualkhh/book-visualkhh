@@ -10,4 +10,9 @@ public class RectDrawing implements Drawing {
     public void fill() {
         System.out.println("Rect Fill!");
     }
+
+    @Override
+    public void delete() {
+        System.out.println("Rect delete!");
+    }
 }

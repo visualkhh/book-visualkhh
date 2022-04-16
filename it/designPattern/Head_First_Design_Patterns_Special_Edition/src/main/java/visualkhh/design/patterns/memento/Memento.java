@@ -9,15 +9,15 @@ public class Memento {
         List<Life.Memento> savedTimes = new ArrayList<>();
         Life life = new Life();
 
-        life.setTime("1000 B.C.");
+        life.setTime("1000");
         savedTimes.add(life.saveToMemento());
-        life.setTime("1000 A.D.");
+        life.setTime("2000.");
         savedTimes.add(life.saveToMemento());
-        life.setTime("2000 A.D.");
+        life.setTime("3000.");
         savedTimes.add(life.saveToMemento());
-        life.setTime("4000 A.D.");
+        life.setTime("4000.");
         savedTimes.add(life.saveToMemento());
 
-        life.restoreFromMemento(savedTimes.get(0));
+        life.restoreFromMemento(savedTimes.get(savedTimes.size() - 1));
     }
 }
