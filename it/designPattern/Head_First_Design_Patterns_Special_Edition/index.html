@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/dom-render@1.0.74/dist/bundle.js"></script>
+</head>
+<body>
+<div id="app">
+    <ul>
+        <li>${this.name}$</li>
+        <li>${this.age}$</li>
+    </ul>
+     <button dr-event-click="this.changeName();">change</button>
+</div>
+<script>
+    class User {
+        constructor(name, age) {
+            this.name = name;
+            this.age = age;
+        }
+        changeName() {
+            this.name = new Date().toISOString();
+        }
+    }
+    const user = new User('John', 30);
+    data = DomRender.run(user , document.querySelector('#app'));
+</script>
+</body>
+</html>
